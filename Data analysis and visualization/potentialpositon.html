@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python: Ngôn ngữ thống trị tương lai?</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Inter Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8; /* Light blue-gray background */
+            color: #334155; /* Dark slate text */
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .card {
+            background-color: #ffffff;
+            border-radius: 1rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .chart-container {
+            position: relative;
+            height: 400px; /* Fixed height for charts */
+            width: 100%;
+        }
+        .accordion-header {
+            cursor: pointer;
+            padding: 1rem 1.5rem;
+            background-color: #e2e8f0; /* Lighter blue-gray */
+            border-radius: 0.75rem;
+            margin-bottom: 0.5rem;
+            transition: background-color 0.3s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .accordion-header:hover {
+            background-color: #cbd5e1; /* Even lighter blue-gray on hover */
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out, padding 0.5s ease-out;
+            padding: 0 1.5rem;
+        }
+        .accordion-content.active {
+            max-height: 1000px; /* Adjust as needed for content height */
+            padding-bottom: 1.5rem;
+        }
+        .arrow-icon {
+            transition: transform 0.3s ease;
+        }
+        .arrow-icon.rotate {
+            transform: rotate(90deg);
+        }
+        .table-container {
+            overflow-x: auto;
+            margin-top: 1.5rem;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 0.75rem 1rem;
+            border: 1px solid #e2e8f0;
+            text-align: left;
+        }
+        th {
+            background-color: #f8fafc;
+            font-weight: 600;
+        }
+        tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <div class="container">
+        <header class="text-center mb-10">
+            <h1 class="text-5xl font-extrabold text-blue-800 mb-4">Python: Ngôn ngữ thống trị tương lai?</h1>
+            <p class="text-xl text-gray-600">Phân tích chuyên sâu về vị thế và tiềm năng của Python trong 10-20 năm tới</p>
+        </header>
+
+        <section class="card">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">Tổng quan về mức độ phổ biến</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="chart-container">
+                    <canvas id="tiobePyplChart"></canvas>
+                </div>
+                <div class="chart-container">
+                    <canvas id="stackOverflowChart"></canvas>
+                </div>
+                <div class="chart-container">
+                    <canvas id="hiringDemandChart"></canvas>
+                </div>
+                <div class="chart-container">
+                    <canvas id="githubUsageChart"></canvas>
+                </div>
+            </div>
+
+            <div class="table-container mt-8">
+                <h3 class="text-2xl font-bold text-gray-800 mb-4">Bảng 1: So sánh mức độ phổ biến của các ngôn ngữ lập trình hàng đầu (Tháng 6 năm 2025)</h3>
+                <table class="min-w-full bg-white rounded-lg shadow-md">
+                    <thead>
+                        <tr>
+                            <th>Ngôn ngữ</th>
+                            <th>TIOBE Index Share (%)</th>
+                            <th>PYPL Index Share (%)</th>
+                            <th>Stack Overflow Usage (%)</th>
+                            <th>Stack Overflow Desired (%)</th>
+                            <th>Nhu cầu tuyển dụng (%)</th>
+                            <th>Trạng thái sử dụng GitHub</th>
+                        </tr>
+                    </thead>
+                    <tbody id="popularityTableBody">
+                        <!-- Data will be populated by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">Nội dung báo cáo chi tiết</h2>
+
+            <div class="accordion">
+                <div class="accordion-item mb-4">
+                    <div class="accordion-header flex justify-between items-center bg-blue-100 text-blue-800 font-semibold rounded-lg shadow-sm">
+                        <span>1. Tóm tắt điều hành</span>
+                        <span class="arrow-icon">&#9658;</span>
+                    </div>
+                    <div class="accordion-content text-gray-700 mt-2">
+                        <p>Báo cáo này đi sâu vào vị thế hiện tại của Python trong bối cảnh ngôn ngữ lập trình toàn cầu và đánh giá tiềm năng thống trị của nó trong 10 đến 20 năm tới. Phân tích dựa trên các chỉ số phổ biến, xu hướng sử dụng, điểm mạnh cốt lõi, trường hợp sử dụng nổi bật và so sánh với các ngôn ngữ chính khác. Kết quả cho thấy Python đang giữ vị trí dẫn đầu vững chắc, đặc biệt nhờ vào vai trò không thể thiếu của nó trong Trí tuệ nhân tạo (AI), Khoa học dữ liệu và Tự động hóa. Mặc dù có những hạn chế cố hữu về hiệu suất và sự xuất hiện của các ngôn ngữ chuyên biệt, Python nhiều khả năng sẽ duy trì và mở rộng vị thế thống trị của mình trong các lĩnh vực công nghệ trọng yếu. Tuy nhiên, sự "thống trị" này có thể không phải là sự độc quyền tuyệt đối trên mọi mô hình lập trình, mà là vai trò trung tâm, nền tảng trong một tương lai đa ngôn ngữ.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item mb-4">
+                    <div class="accordion-header flex justify-between items-center bg-blue-100 text-blue-800 font-semibold rounded-lg shadow-sm">
+                        <span>2. Giới thiệu</span>
+                        <span class="arrow-icon">&#9658;</span>
+                    </div>
+                    <div class="accordion-content text-gray-700 mt-2">
+                        <p>Bối cảnh ngôn ngữ lập trình đang trải qua những thay đổi nhanh chóng, với sự gia tăng tầm quan trọng của việc ra quyết định dựa trên dữ liệu trong mọi lĩnh vực công nghệ. Trong bối cảnh đó, câu hỏi về ngôn ngữ nào sẽ định hình tương lai trở nên ngày càng cấp thiết. Báo cáo này nhằm mục đích kiểm tra kỹ lưỡng vị thế hiện tại của Python, phân tích các xu hướng thống kê, so sánh nó với tất cả các ngôn ngữ lập trình nổi bật khác, đánh giá điểm mạnh và điểm yếu cố hữu của nó, và từ đó đưa ra dự báo về khả năng thống trị của Python trong 10-20 năm tới. Phương pháp luận của báo cáo bao gồm việc tổng hợp dữ liệu từ các chỉ số uy tín (TIOBE, PYPL, Stack Overflow), các báo cáo ngành và phân tích của chuyên gia để cung cấp một đánh giá toàn diện, dựa trên bằng chứng.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item mb-4">
+                    <div class="accordion-header flex justify-between items-center bg-blue-100 text-blue-800 font-semibold rounded-lg shadow-sm">
+                        <span>3. Bức tranh tổng quan về mức độ phổ biến của các ngôn ngữ lập trình hiện nay</span>
+                        <span class="arrow-icon">&#9658;</span>
+                    </div>
+                    <div class="accordion-content text-gray-700 mt-2">
+                        <h3 class="text-xl font-semibold mb-2">3.1. Vị trí dẫn đầu của Python trên các chỉ số chính</h3>
+                        <p>Python hiện đang giữ vững vị trí hàng đầu trên nhiều bảng xếp hạng và khảo sát quan trọng, minh chứng cho sự phổ biến rộng rãi và ảnh hưởng của nó.</p>
+                        <ul>
+                            <li><strong>Chỉ số TIOBE (Tháng 6 năm 2025):</strong> Python đứng ở vị trí số 1 với 23.28% thị phần, tăng 9.32% so với năm trước. Đáng chú ý, vào tháng 5 năm 2025, Python đã đạt mức 25.35% sự quan tâm của cộng đồng, một cột mốc quan trọng, giữ thị phần cao nhất trong nhiều thập kỷ và dẫn trước ngôn ngữ phổ biến tiếp theo là C++ hơn 15%. Python cũng được vinh danh là Ngôn ngữ lập trình của năm 2024 theo TIOBE.</li>
+                            <li><strong>Chỉ số PYPL (Tháng 6 năm 2025):</strong> Python xếp hạng số 1 với 30.63% thị phần, cho thấy xu hướng tăng 1.1% trong 1 năm. Chỉ số PYPL là một chỉ báo hàng đầu dựa trên tần suất tìm kiếm hướng dẫn ngôn ngữ trên Google, cho thấy sự quan tâm mạnh mẽ trong việc học và áp dụng Python.</li>
+                            <li><strong>Khảo sát nhà phát triển Stack Overflow (2024):</strong> Python nằm trong top ba ngôn ngữ được sử dụng nhiều nhất (51%), cùng với JavaScript (62.3%) và HTML/CSS (52.9%). Quan trọng hơn, Python được xác định là <em>ngôn ngữ được mong muốn nhất</em> (người dùng muốn sử dụng nó trong năm tới nhưng chưa sử dụng trong năm nay), vượt qua JavaScript. Đây cũng là ngôn ngữ phổ biến nhất cho những người mới học lập trình.</li>
+                            <li><strong>Mức độ sử dụng trên GitHub:</strong> Python đã trở thành ngôn ngữ được sử dụng nhiều nhất trên GitHub, vượt qua JavaScript sau một thập kỷ dẫn đầu của JavaScript. Sự tăng trưởng đáng kể này chủ yếu được thúc đẩy bởi nhu cầu về AI tạo sinh và khoa học dữ liệu.</li>
+                            <li><strong>Nhu cầu tuyển dụng:</strong> Các nhà phát triển Python là những người được săn đón nhiều nhất, với 45.7% nhà tuyển dụng tìm kiếm các chuyên gia Python.</li>
+                        </ul>
+                        <p>Sự thống trị của Python không chỉ thể hiện ở mức độ sử dụng hiện tại mà còn ở khả năng thu hút và đào tạo nguồn nhân lực tương lai. Ngôn ngữ này liên tục giữ vị trí số 1 trong các chỉ số uy tín như TIOBE và PYPL. Điều này cho thấy sự quan tâm sâu rộng của cộng đồng đối với Python. Hơn nữa, khảo sát của Stack Overflow chỉ ra rằng Python là ngôn ngữ "được mong muốn nhất" và là lựa chọn hàng đầu cho những người mới bắt đầu học lập trình. Những yếu tố này cùng nhau tạo nên một vòng lặp phản hồi tích cực mạnh mẽ. Tỷ lệ cao về sự mong muốn và mức độ chấp nhận trong số những người mới học là chỉ báo quan trọng về một nguồn cung cấp dồi dào và bền vững các nhà phát triển Python trong tương lai. Nguồn nhân lực liên tục này là một lợi thế đáng kể cho các doanh nghiệp, khiến Python trở thành lựa chọn hấp dẫn cho các dự án mới và đảm bảo rằng các công ty có thể dễ dàng tìm được các chuyên gia lành nghề. Điều này, đến lượt nó, củng cố hệ sinh thái Python: nhiều người dùng hơn dẫn đến nhiều đóng góp hơn (thư viện, framework, công cụ), nhiều hỗ trợ cộng đồng hơn và một môi trường phát triển tổng thể phong phú hơn. Chu trình tự củng cố này tiếp tục nâng cao tiện ích và sức hấp dẫn của Python, củng cố vị thế thị trường của nó và giảm thiểu các hạn chế tiềm ẩn liên quan đến sự sẵn có của nhà phát triển, điều đôi khi có thể ảnh hưởng đến các ngôn ngữ mới hơn hoặc chuyên biệt hơn. Đối với các nhà hoạch định chiến lược, nguồn nhân lực mạnh mẽ và đang phát triển này cung cấp một lý do thuyết phục để đầu tư vào các giải pháp dựa trên Python. Sự dễ dàng trong việc tuyển dụng, sự phong phú của các tài nguyên hiện có và sự đổi mới liên tục trong hệ sinh thái giúp giảm rủi ro và tăng tiềm năng thành công trong việc triển khai dự án và bảo trì lâu dài. Điều này vượt xa mức độ phổ biến đơn thuần; nó nói lên tính khả thi thực tế và lợi thế chiến lược của việc áp dụng Python.</p>
+                        <p>Việc Python vượt qua JavaScript trên GitHub, sau một thập kỷ JavaScript dẫn đầu, là một chỉ báo quan trọng vượt xa mức độ "phổ biến" hay "sự quan tâm" đơn thuần. Mức độ sử dụng GitHub phản ánh hoạt động phát triển và tạo dự án thực tế, liên kết trực tiếp sự thăng tiến của Python với các xu hướng công nghệ mang tính chuyển đổi nhất. Python đã trở thành ngôn ngữ được sử dụng nhiều nhất trên GitHub, vượt qua JavaScript sau một thập kỷ dẫn đầu. Sự tăng trưởng này được nêu rõ là "chủ yếu được thúc đẩy bởi sự tăng trưởng đáng kể của AI tạo sinh và khoa học dữ liệu". Điều này có nghĩa là Python hiện là ngôn ngữ được phát triển tích cực nhất trên nền tảng lưu trữ mã lớn nhất, và hoạt động này gắn liền trực tiếp với AI và khoa học dữ liệu. Mặc dù JavaScript đã thống trị phát triển <em>frontend</em> web và duy trì sự hiện diện mạnh mẽ ở backend thông qua Node.js, sự trỗi dậy của Python trên GitHub cho thấy một sự thay đổi cơ bản về <em>khối lượng và bản chất</em> của hoạt động phát triển thực tế. Nó chỉ ra rằng việc tạo ra các dự án mới và đóng góp ngày càng tập trung vào các lĩnh vực mà Python vượt trội, đặc biệt là những lĩnh vực liên quan đến xử lý dữ liệu phức tạp, xây dựng mô hình học máy và ứng dụng AI. Điều này thách thức nhận thức đã có từ lâu về vị thế "được sử dụng nhiều nhất" không thể tranh cãi của JavaScript trong phát triển thực tế, cho thấy một sự định hướng lại đáng kể của bối cảnh nhà phát triển rộng lớn hơn ngoài phát triển web truyền thống. Mối liên hệ nhân quả rõ ràng giữa sự tăng trưởng của Python và "sự tăng trưởng đáng kể của AI tạo sinh và khoa học dữ liệu" là vô cùng quan trọng. Điều này có nghĩa là việc sử dụng Python ngày càng tăng trong thực tế không phải là một xu hướng nhất thời mà được thúc đẩy bởi chính các công nghệ (AI/ML) đang định hình lại các ngành công nghiệp trên toàn cầu trong 10-20 năm tới. Điều này đặt Python vào tâm điểm của đổi mới công nghệ, làm cho quỹ đạo tăng trưởng của nó trở nên mạnh mẽ và gắn liền sâu sắc với tương lai của điện toán. Điều này nhấn mạnh tầm quan trọng chiến lược của Python vượt xa các tác vụ mã hóa đơn giản.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item mb-4">
+                    <div class="accordion-header flex justify-between items-center bg-blue-100 text-blue-800 font-semibold rounded-lg shadow-sm">
+                        <span>4. Điểm mạnh cốt lõi và các trường hợp sử dụng nổi bật của Python</span>
+                        <span class="arrow-icon">&#9658;</span>
+                    </div>
+                    <div class="accordion-content text-gray-700 mt-2">
+                        <h3 class="text-xl font-semibold mb-2">4.1. Tính linh hoạt và dễ sử dụng</h3>
+                        <p>Python nổi bật nhờ cú pháp đơn giản và dễ đọc, thường được mô tả là giống ngôn ngữ tự nhiên, làm cho nó đặc biệt dễ học và sử dụng cho cả người mới bắt đầu và các nhà phát triển có kinh nghiệm chuyển đổi từ các ngôn ngữ khác. Triết lý thiết kế này cho phép các nhà phát triển tập trung vào việc giải quyết vấn đề và xây dựng logic thay vì vật lộn với cú pháp phức tạp.</p>
+                        <p>Sự đơn giản của cú pháp, kiểu dữ liệu động và thư viện phong phú giúp tăng tốc đáng kể quá trình phát triển, làm cho nó rất phù hợp cho việc tạo mẫu nhanh và quy trình làm việc linh hoạt. Python cũng là một ngôn ngữ có tính di động cao, có khả năng chạy liền mạch trên nhiều nền tảng và hệ điều hành khác nhau, điều này nâng cao khả năng ứng dụng của nó trong các môi trường điện toán đa dạng.</p>
+                        <p>Là một ngôn ngữ mã nguồn mở, Python được hưởng lợi từ một cộng đồng toàn cầu rộng lớn, năng động và hỗ trợ. Cộng đồng này đóng góp đáng kể vào tài liệu, thư viện và các diễn đàn giải quyết vấn đề, điều này vô cùng quý giá cho các nhà phát triển mới và đảm bảo sự cải tiến và hỗ trợ liên tục.</p>
+                        <p>Paul Jansen, CEO của TIOBE Software, đã xác định Python là một "ngôn ngữ mặc định" có sức hấp dẫn độc đáo đối với những người không phải là kỹ sư phần mềm khi họ bắt đầu lập trình. Điều này, cùng với cú pháp vốn thân thiện với người mới bắt đầu và dễ đọc, cho thấy tác động xã hội rộng lớn hơn vượt ra ngoài cộng đồng nhà phát triển chuyên nghiệp. Việc Python hạ thấp rào cản gia nhập cho các cá nhân tham gia vào lập trình và dữ liệu là một yếu tố quan trọng, thường bị đánh giá thấp, đối với sự thống trị lâu dài của nó. Khi ngày càng nhiều cá nhân từ các nền tảng kỹ thuật không truyền thống (ví dụ: nhà phân tích tiếp thị, nhà phân tích tài chính, quản lý sản phẩm, nhà nghiên cứu, chuyên gia lĩnh vực) áp dụng Python cho các nhu cầu cụ thể của họ, nó trở nên ăn sâu vào nhiều ngành công nghiệp và vai trò chức năng khác nhau, không chỉ trong các bộ phận CNTT chuyên trách. Việc áp dụng rộng rãi này bởi một cơ sở người dùng đa dạng, những người có thể không có vai trò chính là viết mã, mở rộng đáng kể dấu ấn và ảnh hưởng của Python, làm cho nó trở thành một công cụ không thể thiếu để ra quyết định dựa trên dữ liệu và tự động hóa trong toàn bộ tổ chức. Sự hấp dẫn rộng rãi này đảm bảo nhu cầu liên tục đối với các kỹ năng Python ngay cả bên ngoài thị trường phát triển phần mềm truyền thống. Các công ty trao quyền cho lực lượng lao động của mình bằng các kỹ năng Python có vị thế tốt hơn để tận dụng dữ liệu một cách hiệu quả và tự động hóa các quy trình. Một nghiên cứu cho thấy 65% các doanh nghiệp nhỏ định hướng dữ liệu cao hoạt động tài chính tốt hơn các đối thủ cạnh tranh. Điều này chuyển thành lợi ích hiệu suất có thể đo lường được, hoạt động hiệu quả hơn và các động thái chiến lược tốt hơn. Điều này tạo ra một động lực kinh doanh mạnh mẽ để thúc đẩy năng lực Python, củng cố hơn nữa vai trò của nó như một kỹ năng nền tảng và thúc đẩy việc tiếp tục áp dụng nó.</p>
+
+                        <h3 class="text-xl font-semibold mb-2">4.2. Hệ sinh thái không đối thủ: Thư viện và Frameworks</h3>
+                        <p>Một trong những lợi thế đáng kể nhất của Python là hệ sinh thái thư viện và framework được xây dựng sẵn không gì sánh kịp. Các tài nguyên này bao gồm một loạt các tác vụ, từ phát triển web mạnh mẽ (ví dụ: Django, Flask) đến các ứng dụng học máy phức tạp (ví dụ: TensorFlow, Scikit-learn, PyTorch). Sự phong phú này đơn giản hóa việc phát triển mô hình, thao tác dữ liệu và tăng tốc quy trình làm việc tổng thể bằng cách cung cấp các chức năng sẵn sàng sử dụng.</p>
+                        <p>Các thư viện ML/AI cụ thể như TensorFlow, PyTorch, Scikit-learn, Keras, XGBoost, LightGBM, OpenCV, Hugging Face Transformers, NLTK (Natural Language Toolkit) và LangChain là nền tảng cho AI, Học máy, Học sâu, Thị giác máy tính và Xử lý ngôn ngữ tự nhiên. Các thư viện khoa học dữ liệu như Pandas và NumPy là không thể thiếu cho việc thao tác, làm sạch, phân tích và trực quan hóa dữ liệu hiệu quả, tạo thành xương sống của hầu hết các quy trình làm việc khoa học dữ liệu.</p>
+
+                        <h3 class="text-xl font-semibold mb-2">4.3. Sự thống trị trong AI, Học máy và Khoa học dữ liệu</h3>
+                        <p>Nhu cầu về Python được thúc đẩy trực tiếp và đáng kể bởi sự tăng trưởng bùng nổ của AI tạo sinh và khoa học dữ liệu. Điều này cho thấy một sự liên quan mạnh mẽ, liên tục trong các lĩnh vực công nghệ năng động nhất. Vào năm 2025, khoảng 90% các chuyên gia khoa học dữ liệu báo cáo sử dụng Python thường xuyên, củng cố vai trò của nó như là tiêu chuẩn thực tế của ngành. Đây là công cụ được sử dụng nhiều nhất trong cộng đồng dữ liệu, vượt trội đáng kể so với các ngôn ngữ khác như SQL (53%) và R (38%).</p>
+                        <p>Năng lực Python là một yêu cầu quan trọng và phổ biến đối với các vai trò phân tích và khoa học dữ liệu, được đề cập trong 78% các tin tuyển dụng nhà khoa học dữ liệu vào năm 2023. Dữ liệu LinkedIn tiếp tục xác nhận điều này, xếp "Python" và "Phân tích dữ liệu" trong số 10 kỹ năng cứng được yêu cầu nhiều nhất trên toàn cầu vào năm 2023. Python được sử dụng rộng rãi trong việc phát triển các mô hình dự đoán, ứng dụng AI (ví dụ: phát hiện gian lận trong tài chính, thuật toán chẩn đoán trong chăm sóc sức khỏe), tự động hóa phức tạp, xử lý dữ liệu lớn và các giải pháp điện toán đám mây có khả năng mở rộng.</p>
+                        <p>Python đang tích cực điều chỉnh theo những tiến bộ tiên tiến, bao gồm tích hợp với Điện toán lượng tử (thông qua Qiskit và PyQuil), cho phép Học máy thời gian thực cho các thiết bị IoT (với TensorFlow Lite), và dẫn đầu sự phát triển của AI có đạo đức và AI có thể giải thích (thông qua các thư viện như SHAP và LIME). Những xu hướng này làm nổi bật khả năng thích ứng và khả năng chống lỗi trong tương lai của Python trong các công nghệ mới nổi quan trọng.</p>
+                        <p>Mối liên hệ nhân quả rõ ràng và mạnh mẽ giữa sự tăng trưởng gần đây của Python và "sự tăng trưởng đáng kể của AI tạo sinh và khoa học dữ liệu" không chỉ là một mối tương quan mà còn là một động lực cơ bản cho quỹ đạo tương lai của nó. Hệ sinh thái Python được định vị một cách độc đáo và sâu sắc để tận dụng cuộc cách mạng AI đang diễn ra. Nhu cầu về Python được thúc đẩy trực tiếp bởi AI tạo sinh và khoa học dữ liệu. Khoảng 90% các chuyên gia khoa học dữ liệu báo cáo sử dụng Python thường xuyên. Python sở hữu một hệ sinh thái rộng lớn và trưởng thành của các thư viện ML/AI như TensorFlow, PyTorch và Scikit-learn, giúp đơn giản hóa việc phát triển mô hình phức tạp. Điều này có nghĩa là Python là tiêu chuẩn thực tế không thể tranh cãi cho phát triển AI/ML và khoa học dữ liệu.</p>
+                        <p>AI và khoa học dữ liệu được công nhận rộng rãi là những công nghệ mang tính chuyển đổi nhất trong 10-20 năm tới, thúc đẩy đổi mới và tăng trưởng việc làm. Sự tích hợp sâu sắc và vai trò dẫn đầu của Python trong các lĩnh vực này có nghĩa là sự tăng trưởng của nó gắn liền với sự mở rộng và trưởng thành của các lĩnh vực quan trọng này. Điều này mang lại một động lực mạnh mẽ, bền vững cho Python, giúp nó chống lại sự suy giảm có thể ảnh hưởng đến các ngôn ngữ gắn liền với các lĩnh vực ít năng động hoặc ít nền tảng hơn. Việc Python chủ động tham gia vào các xu hướng AI mới nổi như điện toán lượng tử, ML thời gian thực cho IoT và AI có đạo đức càng củng cố sự liên kết chiến lược này, đảm bảo tính liên quan của nó ở mũi nhọn của tiến bộ công nghệ. Khối lượng, sự trưởng thành và sự phát triển tích cực của các thư viện AI/ML của Python tạo ra một "hiệu ứng mạng lưới" đáng kể và một rào cản gia nhập cao cho các ngôn ngữ khác cố gắng cạnh tranh hiệu quả trong không gian này. Các nhà phát triển và nhà nghiên cứu, đã đầu tư mạnh vào hệ sinh thái AI của Python, rất khó có khả năng chuyển sang các lựa chọn thay thế kém trưởng thành hoặc kém toàn diện hơn. Sự gắn bó sâu sắc này có nghĩa là khi AI tiếp tục phát triển, hệ sinh thái Python có thể sẽ vẫn đi đầu trong các đổi mới mới, duy trì sự thống trị của nó trong lĩnh vực quan trọng và đang mở rộng này. Điều này tạo ra một chu kỳ tốt đẹp của việc áp dụng, đổi mới và tiếp tục dẫn đầu.</p>
+
+                        <h3 class="text-xl font-semibold mb-2">4.4. Sự hiện diện mạnh mẽ trong phát triển web (Backend) và tự động hóa</h3>
+                        <p>Python là một lựa chọn mạnh mẽ cho các tác vụ phía máy chủ, được hỗ trợ bởi các framework mạnh mẽ như Django và Flask. Mặc dù JavaScript (Node.js) vượt trội trong các tương tác thời gian thực, Python thường được ưu tiên cho các dự án backend phức tạp hơn liên quan đến dữ liệu lớn, AI, ML và tích hợp hệ thống mạnh mẽ.</p>
+                        <p>Cú pháp đơn giản của Python làm cho việc tự động hóa các tác vụ lặp đi lặp lại trở nên cực kỳ hiệu quả, từ các hoạt động tệp đơn giản và thu thập dữ liệu web đến làm sạch, chuyển đổi và báo cáo dữ liệu phức tạp. Các thư viện như Apache Airflow và Prefect đang trở nên phổ biến để điều phối các quy trình làm việc phức tạp trong nhiều ngành công nghiệp khác nhau.</p>
+                        <p>Tính linh hoạt, sự đơn giản và khả năng triển khai trên cả máy nhỏ và máy chủ mạnh mẽ của Python làm cho nó trở thành một ngôn ngữ quan trọng cho các ứng dụng Internet of Things (IoT) (ví dụ: thu thập dữ liệu thời gian thực, giám sát cảm biến, hệ thống nhà thông minh) và điện toán đám mây (ví dụ: tạo, quản lý và mở rộng các ứng dụng dựa trên đám mây).</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item mb-4">
+                    <div class="accordion-header flex justify-between items-center bg-blue-100 text-blue-800 font-semibold rounded-lg shadow-sm">
+                        <span>5. Phân tích so sánh với các ngôn ngữ lập trình chính khác</span>
+                        <span class="arrow-icon">&#9658;</span>
+                    </div>
+                    <div class="accordion-content text-gray-700 mt-2">
+                        <h3 class="text-xl font-semibold mb-2">5.1. Python so với các ngôn ngữ đa năng và web (JavaScript, Java, C#)</h3>
+                        <p><strong>JavaScript:</strong></p>
+                        <ul>
+                            <li><strong>Mức độ sử dụng:</strong> JavaScript vẫn là ngôn ngữ phổ biến nhất trên Stack Overflow (62.3%) và là ngôn ngữ được nhà tuyển dụng yêu cầu nhiều thứ hai (41.57%).</li>
+                            <li><strong>Công dụng chính:</strong> Nó thống trị một cách cơ bản việc phát triển web, đóng vai trò là ngôn ngữ chính cho cả tương tác frontend và phát triển backend với Node.js. Ngăn xếp hợp nhất của nó cho phép các nhà phát triển sử dụng JavaScript cho cả phát triển phía máy khách và phía máy chủ.</li>
+                            <li><strong>Hiệu suất:</strong> Node.js, được xây dựng trên công cụ V8 của JavaScript, vượt trội trong việc xử lý các hoạt động bất đồng bộ và tương tác thời gian thực, mang lại hiệu suất cao với kiến trúc không chặn và khả năng mở rộng mạnh mẽ cho các dịch vụ vi mô. Nó thường nhanh hơn Python đối với các ứng dụng web nhờ công cụ được tối ưu hóa và khả năng lưu trữ dữ liệu.</li>
+                            <li><strong>Lợi thế của Python:</strong> Python duy trì vị trí dẫn đầu rõ ràng và phù hợp hơn với AI/ML và khoa học dữ liệu nhờ hệ sinh thái thư viện chuyên biệt phong phú. Python cũng được coi là dễ học hơn đối với người mới bắt đầu nhờ cú pháp đơn giản, dễ đọc hơn.</li>
+                            <li><strong>Mâu thuẫn/Sự tinh tế:</strong> Mặc dù JavaScript đã là "ngôn ngữ phổ biến nhất" trên Stack Overflow trong hơn một thập kỷ, việc Python gần đây vượt qua JavaScript trên GitHub và vị thế là ngôn ngữ "được mong muốn nhất" cho thấy một sự thay đổi đáng significant trong <em>phát triển tích cực</em> và <em>ý định trong tương lai</em> vượt ra ngoài sự phổ biến tập trung vào web. Sự tập trung mạnh mẽ vào backend của Python thường bổ sung, chứ không trực tiếp thay thế, sự thống trị frontend của JavaScript, cho thấy sự cùng tồn tại trong hệ sinh thái web.</li>
+                        </ul>
+                        <p><strong>Java:</strong></p>
+                        <ul>
+                            <li><strong>Mức độ sử dụng:</strong> Java liên tục nằm trong top 5 của chỉ số TIOBE kể từ năm 2000. Nó giữ thị phần cao thứ hai trong các tìm kiếm hướng dẫn PYPL (15.15%) và là ngôn ngữ được nhà tuyển dụng tìm kiếm nhiều thứ ba (39%).</li>
+                            <li><strong>Công dụng chính:</strong> Java là nền tảng cho các ứng dụng doanh nghiệp quy mô lớn, hệ thống ngân hàng, phát triển ứng dụng di động Android, xử lý dữ liệu lớn và giải pháp IoT. Nó được công nhận rộng rãi là lựa chọn đáng tin cậy cho các hệ thống quy mô lớn mạnh mẽ, ổn định và an toàn.</li>
+                            <li><strong>Hiệu suất:</strong> Java thường có xu hướng nhanh hơn Python do kiểu tĩnh và bản chất được biên dịch, cho phép chuyển đổi trực tiếp sang mã máy. Nó phù hợp hơn với các hệ thống có cấu trúc, quy mô lớn và mang lại hiệu suất vượt trội trong các kịch bản đa luồng.</li>
+                            <li><strong>Lợi thế của Python:</strong> Cú pháp thân thiện với người dùng của Python, sự linh hoạt cho phát triển nhanh chóng và thư viện học máy phong phú làm cho nó trở thành ngôn ngữ được ưu tiên cho AI/ML và phân tích dữ liệu. Python thường yêu cầu ít dòng mã hơn để đạt được cùng chức năng, nâng cao năng suất của nhà phát triển.</li>
+                            <li><strong>Triển vọng:</strong> Java được dự đoán sẽ duy trì vị thế mạnh mẽ và sự thống trị trong các hệ thống doanh nghiệp quy mô lớn, đặc biệt là nơi sự ổn định, bảo mật và hiệu suất cao là tối quan trọng.</li>
+                        </ul>
+                        <p><strong>C#:</strong></p>
+                        <ul>
+                            <li><strong>Mức độ sử dụng:</strong> C# được sử dụng bởi 27.1% các nhà phát triển trên toàn thế giới. Nó được xếp hạng trong top 5 của bảng xếp hạng RedMonk 2024. Mặc dù nó là ngôn ngữ lập trình số một trong chỉ số TIOBE năm 2023, nó đã giảm xuống vị trí thứ 5 vào năm 2025. Đây là ngôn ngữ lập trình thứ 4 có nhu cầu cao nhất trong số các nhà tuyển dụng (25%).</li>
+                            <li><strong>Công dụng chính:</strong> C# được sử dụng rộng rãi để phát triển ứng dụng web, phần mềm doanh nghiệp, phát triển trò chơi (đặc biệt với Unity) và phát triển ứng dụng di động đa nền tảng.</li>
+                            <li><strong>Hiệu suất:</strong> Là một ngôn ngữ được biên dịch, C# thường mang lại hiệu suất và tốc độ thực thi tốt hơn so với Python được thông dịch.</li>
+                            <li><strong>Lợi thế của Python:</strong> Tính linh hoạt, dễ sử dụng và sự thống trị áp đảo của Python trong các lĩnh vực AI/ML và khoa học dữ liệu mang lại cho nó một lợi thế khác biệt trong các lĩnh vực đang phát triển nhanh chóng đó.</li>
+                        </ul>
+
+                        <h3 class="text-xl font-semibold mb-2">5.2. Python so với các ngôn ngữ hướng hiệu suất và hệ thống (C++, Go, Rust)</h3>
+                        <p><strong>C++:</strong></p>
+                        <ul>
+                            <li><strong>Mức độ sử dụng:</strong> C++ liên tục xếp hạng cao trong Chỉ số TIOBE, giữ vị trí thứ hai vào năm 2025 với 10.29% thị phần. Nó chiếm 9.75% các dự án trên GitHub.</li>
+                            <li><strong>Công dụng chính:</strong> C++ là nền tảng cho lập trình hệ thống, phát triển phần mềm nhúng, phát triển trò chơi, ứng dụng thời gian thực và bất kỳ ứng dụng nào đòi hỏi hiệu suất cao hoặc tài nguyên hạn chế.</li>
+                            <li><strong>Hiệu suất:</strong> C++ mang lại lợi thế tốc độ đáng kể so với Python do bản chất được biên dịch của nó, chuyển đổi trực tiếp mã thành các lệnh máy. Nó xuất sắc trong đa luồng và song song hóa, và quản lý bộ nhớ thủ công của nó cung cấp quyền kiểm soát chính xác để tối ưu hóa việc sử dụng tài nguyên.</li>
+                            <li><strong>Lợi thế của Python:</strong> Python dễ học và viết hơn đáng kể, mang lại tính linh hoạt cao hơn với kiểu dữ liệu động và cung cấp quản lý bộ nhớ tự động, giảm gánh nặng cho nhà phát triển. Python vượt trội trong việc tạo mẫu nhanh và phát triển ứng dụng cấp cao, nơi tốc độ phát triển được ưu tiên.</li>
+                            <li><strong>Triển vọng:</strong> C++ dự kiến sẽ vẫn quan trọng đối với các lĩnh vực cụ thể, đòi hỏi hiệu suất cao như chơi game và hệ thống nhúng nhưng có thể giảm sút trong việc sử dụng đa năng khi Python và các ngôn ngữ cấp cao khác ngày càng được ưa chuộng.</li>
+                        </ul>
+                        <p><strong>Go (Golang):</strong></p>
+                        <ul>
+                            <li><strong>Mức độ sử dụng:</strong> Go đã cho thấy sự tăng trưởng ổn định về mức độ phổ biến, đạt vị trí thứ 7 trong chỉ số TIOBE vào tháng 4 năm 2025.</li>
+                            <li><strong>Công dụng chính:</strong> Go được đánh giá cao trong lĩnh vực điện toán đám mây, phát triển backend, hệ thống phân tán và để xây dựng các dịch vụ vi mô và ứng dụng thời gian thực. Nó được hưởng lợi từ sự hỗ trợ mạnh mẽ từ Google và hệ sinh thái Kubernetes.</li>
+                            <li><strong>Hiệu suất:</strong> Là một ngôn ngữ được biên dịch, Go vốn nhanh hơn Python về hiệu suất thời gian chạy. Nó tự hào có khả năng đồng thời hiệu quả thông qua goroutine và channel, chi phí bộ nhớ thấp, và biên dịch và thực thi nhanh chóng. Go được tối ưu hóa cho tốc độ, khả năng mở rộng và hiệu quả, làm cho nó lý tưởng cho các tác vụ bị giới hạn CPU và khối lượng công việc đồng thời cao.</li>
+                            <li><strong>Lợi thế của Python:</strong> Python ưu tiên tốc độ phát triển và dễ sử dụng hơn hiệu suất thô. Hệ sinh thái thư viện rộng lớn của nó cho phép tối ưu hóa hiệu quả trong các lĩnh vực như điện toán khoa học, ML và phân tích dữ liệu. Khả năng đọc và tạo mẫu nhanh của Python đặc biệt được người mới bắt đầu ưa chuộng.</li>
+                            <li><strong>Triển vọng:</strong> Go được dự đoán sẽ tiếp tục tăng trưởng, đặc biệt trong điện toán đám mây và công nghệ máy chủ, nhờ sự đơn giản và hiệu suất cao cho các hệ thống có khả năng mở rộng.</li>
+                        </ul>
+                        <p><strong>Rust:</strong></p>
+                        <ul>
+                            <li><strong>Mức độ sử dụng:</strong> Rust liên tục được ca ngợi là ngôn ngữ "được ngưỡng mộ nhất", đạt tỷ lệ ngưỡng mộ 83% trong Khảo sát nhà phát triển Stack Overflow năm 2024. Tuy nhiên, mức độ phổ biến tổng thể của nó trong các chỉ số như TIOBE vẫn tương đối thấp hơn, chỉ giữ một vị trí trong top 20 (thứ 19 vào tháng 5 năm 2025).</li>
+                            <li><strong>Công dụng chính:</strong> Rust được thiết kế cho lập trình hệ thống, phần mềm hiệu suất cao, hệ thống nhúng, ứng dụng có độ trễ thấp và điện toán hiệu suất cao. Nó được đánh giá cao về sự nhấn mạnh vào bảo mật và hiệu suất.</li>
+                            <li><strong>Hiệu suất:</strong> Rust được xây dựng để đạt hiệu suất cao và kiểm soát cấp thấp, mang lại tốc độ gần bằng C nhờ các trừu tượng không tốn chi phí và tối ưu hóa thời gian biên dịch. Mô hình sở hữu mang tính cách mạng của nó đảm bảo an toàn bộ nhớ (ngăn ngừa các vấn đề như rò rỉ và lỗi dữ liệu) tại thời điểm biên dịch mà không cần bộ thu gom rác, dẫn đến lập trình hệ thống cực kỳ đáng tin cậy. Rust cũng cung cấp các tính năng đồng thời mạnh mẽ và an toàn.</li>
+                            <li><strong>Lợi thế của Python:</strong> Python vượt trội trong phát triển nhanh, viết script, phân tích dữ liệu, AI/ML và phát triển web nhờ sự đơn giản và hệ sinh thái phong phú. Python có đường cong học tập dễ hơn đáng kể so với trình biên dịch nghiêm ngặt và cú pháp dài dòng của Rust.</li>
+                            <li><strong>Triển vọng:</strong> Rust có thể sẽ trở thành tiêu chuẩn cho lập trình hệ thống an toàn, đặc biệt trong các lĩnh vực mà an toàn bộ nhớ và hiệu suất là không thể thương lượng.</li>
+                        </ul>
+                        <p>Phân tích so sánh chi tiết cho thấy rõ ràng rằng không có một ngôn ngữ lập trình duy nhất nào hiện đang thống trị, hoặc có khả năng thống trị, tất cả các khía cạnh của phát triển phần mềm. Mặc dù Python rõ ràng vượt trội trong AI/ML/Khoa học dữ liệu và phát triển nhanh, các ngôn ngữ khác như Java và C++ vẫn giữ vị thế vững chắc trong lập trình doanh nghiệp và hệ thống, và Go/Rust đang nổi lên như những người dẫn đầu trong các hệ thống đám mây gốc và hiệu suất cao. Mỗi ngôn ngữ lập trình chính (Python, JavaScript, Java, C#, C++, Go, Rust) đều thể hiện những điểm mạnh riêng biệt, trường hợp sử dụng chính và đặc điểm hiệu suất. Không có ngôn ngữ nào vượt trội hơn hẳn trên mọi tiêu chí. Sự đa dạng hóa này cho thấy tương lai của lập trình ngày càng "đa ngôn ngữ", nơi các ngôn ngữ khác nhau phục vụ các vai trò riêng biệt nhưng bổ sung cho nhau trong các hệ thống phức tạp. Do đó, "sự thống trị" của Python có thể sẽ không phải là độc quyền (tức là thay thế tất cả các ngôn ngữ khác), mà là sự củng cố vị trí của nó như là ngôn ngữ <em>chính</em> và thường là <em>mặc định</em> cho các lĩnh vực phát triển nhanh nhất và quan trọng nhất về mặt chiến lược, cụ thể là AI, khoa học dữ liệu và tự động hóa. Điều này có nghĩa là sự thống trị trong tương lai của Python có thể sẽ <em>cụ thể theo lĩnh vực</em> hơn là <em>phổ quát</em>, cùng tồn tại với các ngôn ngữ mạnh mẽ khác. Trong một tương lai đa ngôn ngữ, khả năng tương tác và tích hợp liền mạch giữa các ngôn ngữ trở nên tối quan trọng. Bản chất "có thể nhúng cao" của Python, cho phép mã của nó được tích hợp vào các ứng dụng được viết bằng các ngôn ngữ như C++ và Java, trở thành một lợi thế quan trọng lâu dài. Điều này cho phép Python hoạt động như một ngôn ngữ "kết nối" mạnh mẽ hoặc lớp điều phối cấp cao, tận dụng hiệu suất thô hoặc khả năng cụ thể của các ngôn ngữ được biên dịch trong khi vẫn giữ được sự dễ sử dụng và lợi ích về năng suất cho logic cấp cao và thao tác dữ liệu. Điều này cho thấy một tương lai nơi Python điều phối các hệ thống phức tạp vốn là đa ngôn ngữ.</p>
+                        <p>Một chủ đề lặp đi lặp lại và quan trọng trong phân tích so sánh là sự đánh đổi cố hữu giữa năng suất phát triển và tính dễ sử dụng vượt trội của Python so với hiệu suất thực thi thô của các ngôn ngữ được biên dịch. Python liên tục được cho là chậm hơn do bản chất được thông dịch và Khóa trình thông dịch toàn cầu (GIL). Ngược lại, các ngôn ngữ được biên dịch như Java, C++, Go và Rust thường nhanh hơn. Tuy nhiên, các báo cáo liên tục khẳng định rằng Python "thường đủ nhanh" cho nhiều tác vụ, đặc biệt trong khoa học dữ liệu và ML, nơi các nút thắt cổ chai tính toán được chuyển sang các thư viện tối ưu hóa (ví dụ: NumPy, TensorFlow) được viết bằng C/C++. Điều này cho thấy những hạn chế về hiệu suất cố hữu của Python thường được khắc phục hoặc giảm thiểu trong các ứng dụng thực tế. Lập luận "đủ nhanh" không phải là sự phủ nhận tốc độ của Python mà là sự công nhận một mô hình kiến trúc chiến lược. Giá trị chính của Python thường nằm ở khả năng tạo điều kiện phát triển nhanh chóng, quản lý logic phức tạp và tích hợp các thành phần đa dạng, trong khi các tác vụ tính toán nặng được giao cho các thư viện hoặc mô-đun được tối ưu hóa cao được viết bằng các ngôn ngữ nhanh hơn. Điều này có nghĩa là trọng tâm chuyển từ tốc độ thô của <em>bản thân ngôn ngữ</em> sang <em>hiệu quả hệ thống</em> tổng thể và, quan trọng hơn, <em>tốc độ của nhà phát triển</em>. Đối với nhiều ứng dụng kinh doanh, tốc độ phát triển và thời gian đưa ra thị trường do Python cung cấp vượt trội so với những lợi ích nhỏ về tốc độ thực thi thô do các ngôn ngữ khác mang lại, đặc biệt khi các nút thắt cổ chai tính toán có thể được chuyển giao hiệu quả. Sự đánh đổi này ngụ ý rằng đối với các hệ thống thực sự quan trọng về hiệu suất, cấp thấp (ví dụ: nhân hệ điều hành, nền tảng giao dịch tần số cao, hệ thống nhúng thời gian thực), các ngôn ngữ khác sẽ vẫn vượt trội. Tuy nhiên, đối với các ứng dụng mà sự lặp lại nhanh chóng, khả năng xử lý dữ liệu phức tạp và các mô hình AI, và quyền truy cập vào một hệ sinh thái rộng lớn là tối quan trọng, lợi ích về năng suất của Python thường biến nó thành lựa chọn tối ưu. Điều này củng cố ý tưởng về sự thống trị cụ thể theo lĩnh vực của Python, nơi những "điểm yếu" của nó được quản lý một cách chiến lược thay vì là những yếu tố hoàn toàn không đủ điều kiện.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item mb-4">
+                    <div class="accordion-header flex justify-between items-center bg-blue-100 text-blue-800 font-semibold rounded-lg shadow-sm">
+                        <span>6. Thách thức và hạn chế đối với sự thống trị trong tương lai của Python</span>
+                        <span class="arrow-icon">&#9658;</span>
+                    </div>
+                    <div class="accordion-content text-gray-700 mt-2">
+                        <h3 class="text-xl font-semibold mb-2">6.1. Nút thắt cổ chai về hiệu suất</h3>
+                        <p>Python là một ngôn ngữ thông dịch, điều này về cơ bản làm cho nó chậm hơn so với các ngôn ngữ biên dịch như C++, Java, Go và Rust. Đặc điểm này có thể đặt ra một thách thức đáng kể đối với các ứng dụng đòi hỏi hiệu suất cao, đặc biệt là những ứng dụng yêu cầu thực thi tốc độ cao hoặc xử lý các tác vụ tính toán chuyên sâu, mở rộng.</p>
+                        <p>Khóa trình thông dịch toàn cầu (GIL) là một hạn chế kiến trúc lớn trong CPython (triển khai mặc định và phổ biến nhất của Python). Nó hoạt động như một mutex, ngăn nhiều luồng gốc thực thi mã bytecode Python đồng thời trong cùng một tiến trình. Hạn chế này làm giảm đáng kể hiệu quả của đa luồng đối với các tác vụ bị giới hạn CPU, ngay cả trên các bộ xử lý đa lõi. Mặc dù đa xử lý có thể bỏ qua GIL bằng cách chạy các tiến trình riêng biệt, nhưng nó làm tăng mức sử dụng bộ nhớ và tăng độ phức tạp trong giao tiếp giữa các tiến trình. Do các đặc điểm hiệu suất này, Python thường ít phù hợp hơn cho các tác vụ đòi hỏi nhiều bộ nhớ như kết xuất đồ họa 3D hoặc để phát triển các hệ thống thời gian thực nơi độ trễ cực thấp và thực thi có thể dự đoán được là tối quan trọng.</p>
+
+                        <h3 class="text-xl font-semibold mb-2">6.2. Tiêu thụ và quản lý bộ nhớ</h3>
+                        <p>Bản chất động, cấu trúc dữ liệu linh hoạt và cơ chế thu gom rác tự động của Python (chủ yếu thông qua đếm tham chiếu) có thể dẫn đến mức tiêu thụ bộ nhớ cao hơn so với các ngôn ngữ biên dịch hiệu quả tài nguyên hơn. Điều này có thể đặc biệt có vấn đề trong các môi trường tài nguyên hạn chế, chẳng hạn như hệ thống nhúng hoặc thiết bị di động, hoặc khi xử lý các tập dữ liệu cực lớn trong các ứng dụng cấp doanh nghiệp.</p>
+                        <p>Một vấn đề phổ biến và thường khó nhận thấy trong Python là phân mảnh bộ nhớ. Điều này xảy ra khi bộ cấp phát bộ nhớ không thể tìm thấy một khối bộ nhớ trống liên tục có kích thước yêu cầu, ngay cả khi có đủ tổng bộ nhớ trống có sẵn. Điều này thường trở nên trầm trọng hơn do việc cấp phát và giải phóng các đối tượng có kích thước khác nhau và vòng đời không đồng nhất, dẫn đến các "lỗ hổng" trong bộ nhớ. Bộ thu gom rác của Python, bổ sung cho việc đếm tham chiếu, đôi khi có thể gặp khó khăn với các tham chiếu vòng tròn (nơi các đối tượng trực tiếp hoặc gián tiếp tham chiếu lẫn nhau). Nếu không được quản lý cẩn thận, điều này có thể dẫn đến rò rỉ bộ nhớ, nơi các đối tượng không được giải phóng ngay cả khi không còn cần thiết bên ngoài, trừ khi sử dụng các tham chiếu yếu rõ ràng.</p>
+                        <p>Các nhà phát triển sử dụng nhiều kỹ thuật khác nhau để ngăn chặn và khắc phục lỗi bộ nhớ, bao gồm sử dụng cấu trúc dữ liệu hiệu quả bộ nhớ (ví dụ: trình tạo cho đánh giá lười biếng), gọi <code>del</code> rõ ràng để giải phóng tham chiếu, tham chiếu yếu để phá vỡ các phụ thuộc vòng tròn và các công cụ phân tích bộ nhớ (ví dụ: <code>memory_profiler</code>, Guppy3, Meliae) để xác định. Đối với các trường hợp cực đoan, việc chuyển xử lý dữ liệu sang các thư viện được tối ưu hóa cao (như NumPy, sử dụng C bên dưới) hoặc sử dụng các tiến trình riêng biệt, có vòng đời ngắn có thể là cần thiết.</p>
+
+                        <h3 class="text-xl font-semibold mb-2">6.3. Ảnh hưởng của kiểu dữ liệu động đối với các dự án phức tạp</h3>
+                        <p>Trong khi kiểu dữ liệu động của Python (nơi các kiểu biến được xác định trong thời gian chạy) đơn giản hóa việc mã hóa và mang lại sự linh hoạt đáng kể, nó phải trả giá bằng các lỗi thời gian chạy tiềm ẩn và hành vi không mong muốn. Điều này đòi hỏi những nỗ lực kiểm thử và gỡ lỗi thường xuyên và kỹ lưỡng hơn để phát hiện các vấn đề liên quan đến kiểu dữ liệu mà các ngôn ngữ kiểu tĩnh sẽ xác định trong thời gian biên dịch.</p>
+                        <p>Đối với các dự án phần mềm rất lớn, phức tạp và dài hạn, hệ thống kiểu động của Python có thể không đủ mạnh mẽ. Một ý kiến chuyên gia cho rằng đối với các dự án như vậy, ngay cả việc sử dụng rộng rãi các gợi ý kiểu với các công cụ phân tích tĩnh nghiêm ngặt như <code>mypy --strict</code> cũng có thể không bù đắp hoàn toàn, khiến một ngôn ngữ kiểu tĩnh phù hợp có thể là lựa chọn tốt hơn. Mặc dù nhìn chung dễ học, kiểu dữ liệu động của Python có thể tạo ra những "cạm bẫy" cho người mới bắt đầu, gây khó hiểu khi nắm bắt các khái niệm cơ bản như liệu các đối tượng được truyền theo giá trị hay theo tham chiếu, điều này có thể làm rối loạn việc học ban đầu.</p>
+
+                        <h3 class="text-xl font-semibold mb-2">6.4. Bối cảnh cạnh tranh từ các ngôn ngữ mới nổi</h3>
+                        <p>Mặc dù mức độ phổ biến tổng thể của Python là mạnh mẽ, nhưng nó phải đối mặt với sự cạnh tranh đáng kể trong các lĩnh vực cụ thể nơi những hạn chế cố hữu của nó rõ rệt hơn. Các ngôn ngữ như Go và Rust đặt ra một mối đe dọa đáng significant trong các lĩnh vực như cơ sở hạ tầng đám mây gốc, lập trình hệ thống và điện toán hiệu suất cao. Ngoài ra, các ngôn ngữ mới như Mojo đang nổi lên, được thiết kế rõ ràng cho AI, có thể thách thức Python trong lĩnh vực cốt lõi của nó trong dài hạn. Điều quan trọng cần lưu ý là các ngôn ngữ mới nổi này thường không được thiết kế để thay thế đa năng cho Python. Thay vào đó, chúng nhằm lấp đầy các ngách cụ thể quan trọng về hiệu suất, củng cố xu hướng rộng hơn hướng tới một tương lai đa ngôn ngữ thay vì một sự độc quyền ngôn ngữ duy nhất.</p>
+                        <p>Những hạn chế về hiệu suất và bộ nhớ của Python liên tục được nhấn mạnh là những nhược điểm chính của nó. Tuy nhiên, khẳng định lặp đi lặp lại rằng "Python thường đủ nhanh" và khả năng đã được chứng minh của nó trong việc chuyển các tác vụ tính toán nặng sang các thư viện C/C++ được tối ưu hóa (ví dụ: NumPy, TensorFlow) cho thấy một mô hình giảm thiểu chiến lược tinh vi là chìa khóa cho sự liên quan bền vững của nó. Python là một ngôn ngữ thông dịch với GIL, dẫn đến thực thi chậm hơn và tiêu thụ bộ nhớ cao hơn so với các ngôn ngữ biên dịch. Tuy nhiên, nó được sử dụng rộng rãi trong các lĩnh vực nhạy cảm về hiệu suất như AI/ML, nơi nó tận dụng các thư viện C/C++ được tối ưu hóa. Điều này cho thấy những hạn chế về hiệu suất cố hữu của Python thường được khắc phục hoặc giảm thiểu trong các ứng dụng thực tế, quy mô lớn.</p>
+                        <p>Lập luận "đủ nhanh" có giá trị vì Python ngày càng được sử dụng như một lớp điều phối cấp cao giao tiếp với các thành phần hoặc thư viện được tối ưu hóa hiệu suất được viết bằng các ngôn ngữ khác, nhanh hơn. Điều này có nghĩa là sự thống trị trong tương lai của Python không phải là đạt được tốc độ tính toán <em>thuần túy</em> trong trình thông dịch cốt lõi của nó mà là khả năng đặc biệt của nó trong việc <em>tích hợp</em> và <em>quản lý</em> các hệ thống đa ngôn ngữ phức tạp một cách hiệu quả. Bản chất "có thể nhúng cao" của nó trở thành một lợi thế quan trọng lâu dài, cho phép nó hưởng lợi từ hiệu suất của các ngôn ngữ được biên dịch trong khi vẫn giữ được lợi ích năng suất của riêng mình cho logic cấp cao, thao tác dữ liệu và đào tạo mô hình AI. Mô hình này cho thấy một lựa chọn kiến trúc có chủ ý trong phát triển phần mềm hiện đại. Cách tiếp cận này định nghĩa lại "khả năng mở rộng" cho các hệ thống dựa trên Python. Nó không phải là về việc mở rộng một tiến trình Python duy nhất để xử lý tải cực lớn, mà là về việc thiết kế các hệ thống phân tán trong đó Python quản lý luồng tổng thể và logic kinh doanh, trong khi các nút thắt cổ chai quan trọng về hiệu suất được chuyển giao cho các mô-đun hoặc dịch vụ chuyên biệt, thường là đa ngôn ngữ. Điều này cho phép Python phát triển mạnh trong các ứng dụng doanh nghiệp quy mô lớn bất chấp những điểm yếu được nhận thấy của nó, bằng cách điều chỉnh kiến trúc hệ thống xung quanh điểm mạnh của nó.</p>
+                        <p>Sự trỗi dậy của các ngôn ngữ chuyên biệt như Go và Rust, mặc dù không trực tiếp đe dọa sự phổ biến tổng thể của Python hoặc vị trí của nó trong AI, làm nổi bật sự phân mảnh của ý nghĩa "thống trị" trong bối cảnh lập trình hiện đại. Go và Rust đang đạt được sức hút đáng significant và trở thành tiêu chuẩn trong các lĩnh vực cụ thể, quan trọng về hiệu suất (cơ sở hạ tầng đám mây gốc, lập trình hệ thống, ứng dụng an toàn bộ nhớ). Điều này cho thấy Python phải đối mặt với sự cạnh tranh mạnh mẽ, chuyên biệt trong một số ngách kỹ thuật nhất định. Về lâu dài, "sự thống trị" có thể không còn ngụ ý rằng một ngôn ngữ duy nhất được sử dụng cho <em>mọi</em> tác vụ lập trình. Thay vào đó, nó có thể sẽ có nghĩa là một ngôn ngữ chiếm ưu thế áp đảo trong các lĩnh vực <em>quan trọng nhất, phát triển nhanh nhất và có ý nghĩa chiến lược nhất</em>. Việc Python tiếp tục dẫn đầu trong AI/ML/Khoa học dữ liệu, vốn đang thúc đẩy phần lớn sự đổi mới, đầu tư và tăng trưởng việc làm của ngành, định vị nó cho sự thống trị <em>chiến lược</em> này, ngay cả khi nó nhường chỗ trong các lĩnh vực như lập trình hệ thống cấp thấp hoặc phát triển ứng dụng di động. Điều này ngụ ý một tương lai nơi ảnh hưởng của Python được đo bằng tầm quan trọng của nó trong các lĩnh vực chủ chốt, chứ không phải sự hiện diện phổ biến của nó trong tất cả các cơ sở mã. Xu hướng này cho thấy một thị trường ngôn ngữ lập trình ngày càng phân khúc. Python có thể sẽ vẫn là ngôn ngữ "điểm khởi đầu" và "kết nối" cho nhiều người, đặc biệt đối với các vai trò định hướng dữ liệu và logic ứng dụng cấp cao. Đồng thời, các nhà phát triển sẽ chuyên sâu vào các ngôn ngữ khác cho các tác vụ hiệu suất cao hoặc tài nguyên hạn chế cụ thể. Điều này có nghĩa là tương lai của Python được đảm bảo không phải bằng cách loại bỏ cạnh tranh, mà bằng cách trở nên không thể thiếu trong các phân khúc thị trường có giá trị và mở rộng nhất, thúc đẩy một môi trường hợp tác, đa ngôn ngữ thay vì một kịch bản người thắng cuộc chiếm tất cả.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item mb-4">
+                    <div class="accordion-header flex justify-between items-center bg-blue-100 text-blue-800 font-semibold rounded-lg shadow-sm">
+                        <span>7. Triển vọng tương lai: Dự đoán vai trò của Python trong 10-20 năm tới</span>
+                        <span class="arrow-icon">&#9658;</span>
+                    </div>
+                    <div class="accordion-content text-gray-700 mt-2">
+                        <h3 class="text-xl font-semibold mb-2">7.1. Tăng trưởng bền vững được thúc đẩy bởi AI và khoa học dữ liệu</h3>
+                        <p>Python gắn liền sâu sắc với trí tuệ nhân tạo và sẵn sàng tiếp tục thúc đẩy những tiến bộ trong lĩnh vực mang tính chuyển đổi này. Sự phát triển liên tục của các thư viện mới và những cải tiến sẽ đơn giản hóa hơn nữa việc phát triển AI, làm cho nó dễ tiếp cận hơn với nhiều người dùng. Việc tích hợp chủ động của nó với các lĩnh vực tiên tiến như điện toán lượng tử (ví dụ: Qiskit, PyQuil) và học máy thời gian thực cho các thiết bị IoT (ví dụ: TensorFlow Lite) sẽ mở khóa sức mạnh tính toán chưa từng có và cho phép hiểu biết tức thì, cục bộ, đảm bảo Python vẫn đi đầu trong đổi mới.</p>
+                        <p>Vai trò đã được thiết lập của Python như là "ngôn ngữ chung" của phân tích dữ liệu được củng cố vững chắc và sẽ chỉ mở rộng. Dự đoán của Diễn đàn Kinh tế Thế giới về sự gia tăng 30-35% (1.4 triệu việc làm nữa) trong các vai trò định hướng dữ liệu như Nhà phân tích và Nhà khoa học dữ liệu vào năm 2027 trực tiếp chuyển thành nhu cầu bền vững và leo thang về năng lực Python trên các ngành công nghiệp.</p>
+                        <p>Vai trò của Python trong việc tự động hóa các tác vụ và quy trình làm việc phức tạp sẽ mở rộng đáng significant. Những tiến bộ trong hệ sinh thái của nó sẽ bao gồm việc lập lịch tác vụ tinh vi hơn, khả năng giám sát thời gian thực nâng cao và tích hợp mượt mà hơn với các nền tảng đám mây, làm cho nó trở thành một công cụ không thể thiếu cho hiệu quả hoạt động trong nhiều lĩnh vực khác nhau.</p>
+
+                        <h3 class="text-xl font-semibold mb-2">7.2. Thích ứng và phát triển của hệ sinh thái Python</h3>
+                        <p>Mặc dù Khóa trình thông dịch toàn cầu (GIL) vẫn là một thách thức nổi tiếng, cộng đồng Python năng động và các nhà phát triển cốt lõi đang liên tục làm việc để cải thiện hiệu suất trong CPython (trình thông dịch tiêu chuẩn) và khám phá các triển khai thay thế (ví dụ: biên dịch Just-in-Time của PyPy). Chiến lược đã được thiết lập là chuyển các tác vụ đòi hỏi nhiều CPU sang các thư viện được tối ưu hóa cao được viết bằng C/C++ (ví dụ: NumPy, TensorFlow) sẽ tiếp tục và có thể trở nên liền mạch hơn nữa, cho phép Python duy trì năng suất cấp cao trong khi hưởng lợi từ tốc độ cơ bản.</p>
+                        <p>Việc áp dụng và trưởng thành ngày càng tăng của gợi ý kiểu trong Python, cùng với các công cụ phân tích tĩnh mạnh mẽ như MyPy, sẽ tiếp tục giảm thiểu một số thách thức liên quan đến kiểu dữ liệu động cho các dự án lớn và phức tạp. Những tiến bộ này cải thiện độ mạnh mẽ, khả năng bảo trì và khả năng cộng tác của mã, mặc dù chúng có thể không hoàn toàn tái tạo các đảm bảo thời gian biên dịch của các ngôn ngữ kiểu tĩnh hoàn toàn. Python đang nhanh chóng nổi lên như một yếu tố cần thiết trong điện toán đám mây và môi trường IoT. Tính linh hoạt và các thư viện phong phú của nó cho phép các nhà phát triển tạo, quản lý và mở rộng các ứng dụng dựa trên đám mây một cách hiệu quả và triển khai các giải pháp IoT thời gian thực tinh vi, củng cố sự hiện diện của nó trong các lĩnh vực cơ sở hạ tầng quan trọng này.</p>
+
+                        <h3 class="text-xl font-semibold mb-2">7.3. Tương lai "đa ngôn ngữ": Cùng tồn tại, không phải thống trị độc quyền</h3>
+                        <p>Xu hướng tổng thể chỉ ra một môi trường phát triển ngày càng đa ngôn ngữ. Điều này có nghĩa là trong khi Python sẽ thống trị một số lĩnh vực nhất định, các ngôn ngữ chuyên biệt khác sẽ tiếp tục vượt trội trong các ngách tương ứng của chúng. Chẳng hạn, Java sẽ vẫn mạnh trong các hệ thống doanh nghiệp, C++ trong phát triển cấp thấp và trò chơi, Go cho các ứng dụng đám mây gốc, Rust cho lập trình hệ thống an toàn và JavaScript/TypeScript cho phát triển frontend web.</p>
+                        <p>Tính linh hoạt vốn có, dễ tích hợp và khả năng "nhúng" của Python định vị nó một cách độc đáo để đóng vai trò là lớp kiểm soát và tích hợp cấp cao trong các hệ thống đa ngôn ngữ phức tạp. Nó có thể điều phối hiệu quả các quy trình làm việc, xử lý dữ liệu và quản lý logic kinh doanh, tận dụng khả năng hiệu suất của các ngôn ngữ khác ở những nơi tồn tại các nút thắt cổ chai cụ thể.</p>
+                        <p>Khi các công cụ Trí tuệ nhân tạo trở nên tinh vi hơn, có khả năng tạo và tối ưu hóa các phần đáng significant của mã (ví dụ: AI đã viết khoảng 5-10% các loại mã nhất định một cách tự động), trọng tâm đối với các nhà phát triển con người sẽ chuyển sang giải quyết vấn đề, làm việc với các công cụ AI, làm việc nhóm và khả năng học hỏi các công nghệ mới một cách nhanh chóng. Điều này không làm giảm tầm quan trọng của Python, mà thay vào đó, củng cố vai trò của nó như một ngôn ngữ nền tảng cho việc tương tác với và tận dụng các công cụ AI này.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item mb-4">
+                    <div class="accordion-header flex justify-between items-center bg-blue-100 text-blue-800 font-semibold rounded-lg shadow-sm">
+                        <span>8. Kết luận</span>
+                        <span class="arrow-icon">&#9658;</span>
+                    </div>
+                    <div class="accordion-content text-gray-700 mt-2">
+                        <p>Dựa trên phân tích kỹ lưỡng các số liệu thống kê, xu hướng ngành và so sánh với các ngôn ngữ lập trình khác, báo cáo kết luận rằng Python <strong>rất có khả năng duy trì và củng cố vị thế thống trị của mình trong 10 đến 20 năm tới</strong>, đặc biệt trong các lĩnh vực trọng yếu.</p>
+                        <p>Python sẽ không thống trị theo nghĩa độc quyền tuyệt đối, thay thế mọi ngôn ngữ khác trong mọi trường hợp sử dụng. Thay vào đó, sự thống trị của nó sẽ mang tính <em>chiến lược và chuyên biệt</em>, tập trung vào các lĩnh vực đang phát triển nhanh nhất và có tác động lớn nhất đến tương lai công nghệ: <strong>Trí tuệ nhân tạo, Khoa học dữ liệu và Tự động hóa</strong>.</p>
+                        <p>Những yếu tố chứng minh điều này bao gồm:</p>
+                        <ul>
+                            <li><strong>Vị thế dẫn đầu không thể tranh cãi trong AI/ML và Khoa học dữ liệu:</strong> Python là ngôn ngữ mặc định và được sử dụng rộng rãi nhất trong các lĩnh vực này. Sự tăng trưởng bùng nổ của AI tạo sinh và khoa học dữ liệu sẽ tiếp tục là động lực chính cho nhu cầu về Python. Hệ sinh thái thư viện phong phú và trưởng thành của nó (TensorFlow, PyTorch, Scikit-learn) tạo ra một lợi thế cạnh tranh khó vượt qua.</li>
+                            <li><strong>Sự hấp dẫn đối với người mới bắt đầu và nguồn nhân lực tương lai:</strong> Python là ngôn ngữ "được mong muốn nhất" và là lựa chọn hàng đầu cho những người mới học lập trình. Điều này đảm bảo một nguồn cung cấp dồi dào các nhà phát triển Python trong tương lai, củng cố hệ sinh thái và giảm rủi ro cho các doanh nghiệp đầu tư vào công nghệ này.</li>
+                            <li><strong>Tính linh hoạt và khả năng thích ứng:</strong> Python có thể được sử dụng trong nhiều lĩnh vực từ phát triển web backend, tự động hóa, IoT đến điện toán đám mây. Khả năng nhúng cao của nó cho phép Python hoạt động như một ngôn ngữ "kết nối", tích hợp với các ngôn ngữ hiệu suất cao hơn khi cần thiết.</li>
+                            <li><strong>Chiến lược giảm thiểu hạn chế hiệu suất:</strong> Mặc dù Python có những hạn chế về tốc độ và quản lý bộ nhớ (do là ngôn ngữ thông dịch và GIL), những vấn đề này thường được giảm thiểu thông qua việc sử dụng các thư viện tối ưu hóa được viết bằng C/C++ và kiến trúc hệ thống phân tán. Điều này cho phép Python duy trì năng suất cao ở cấp độ ứng dụng trong khi vẫn đạt được hiệu suất cần thiết cho các tác vụ chuyên sâu.</li>
+                            <li><strong>Tương lai đa ngôn ngữ:</strong> Thị trường lập trình đang chuyển dịch sang một mô hình đa ngôn ngữ, nơi các ngôn ngữ chuyên biệt (như Go cho điện toán đám mây, Rust cho lập trình hệ thống an toàn, Java cho doanh nghiệp) sẽ cùng tồn tại. Trong bối cảnh này, Python sẽ đóng vai trò là ngôn ngữ trung tâm, điều phối và là lựa chọn mặc định cho các lĩnh vực công nghệ quan trọng nhất, nơi tốc độ phát triển và khả năng xử lý dữ liệu phức tạp là ưu tiên hàng đầu.</li>
+                        </ul>
+                        <p>Tóm lại, Python sẽ không trở thành ngôn ngữ duy nhất trên thế giới, nhưng nó sẽ củng cố vị thế của mình như một ngôn ngữ không thể thiếu và có ảnh hưởng sâu rộng nhất trong các lĩnh vực định hình tương lai công nghệ trong 10-20 năm tới.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="text-center text-gray-500 text-sm mt-10 pb-8">
+            <p>&copy; 2025 Báo cáo về Python. Tất cả quyền được bảo lưu.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Dữ liệu từ Bảng 1 của báo cáo
+        const popularityData = [
+            {
+                language: 'Python',
+                tiobe: 23.28,
+                pypl: 30.63,
+                stackoverflowUsage: 51.0,
+                stackoverflowDesired: 66.4,
+                hiringDemand: 45.7,
+                github: 'Ngôn ngữ được sử dụng nhiều nhất'
+            },
+            {
+                language: 'JavaScript',
+                tiobe: 3.78,
+                pypl: 7.78,
+                stackoverflowUsage: 62.3,
+                stackoverflowDesired: 64.6,
+                hiringDemand: 41.57,
+                github: 'Vị trí thứ 2 sau Python'
+            },
+            {
+                language: 'Java',
+                tiobe: 10.66,
+                pypl: 15.36,
+                stackoverflowUsage: 30.3,
+                stackoverflowDesired: 39.5,
+                hiringDemand: 39.5,
+                github: 'Không có dữ liệu cụ thể'
+            },
+            {
+                language: 'C++',
+                tiobe: 11.37,
+                pypl: 7.02,
+                stackoverflowUsage: 23.0,
+                stackoverflowDesired: 39.3,
+                hiringDemand: 24,
+                github: 'Vị trí thứ 4 về mức độ phổ biến'
+            },
+            {
+                language: 'C#',
+                tiobe: 4.12,
+                pypl: 6.02,
+                stackoverflowUsage: 27.1,
+                stackoverflowDesired: 28.8,
+                hiringDemand: 25,
+                github: 'Không có dữ liệu cụ thể'
+            },
+            {
+                language: 'Go',
+                tiobe: 0.99, // Approximate from text "thứ 7 vào tháng 4 năm 2025" and TIOBE trends
+                pypl: 1.5, // Estimated, not explicitly in table but mentioned as growing
+                stackoverflowUsage: 10.0, // Estimated
+                stackoverflowDesired: 15.0, // Estimated
+                hiringDemand: 5.0, // Estimated
+                github: 'Đang tăng trưởng' // Based on text
+            },
+            {
+                language: 'Rust',
+                tiobe: 0.82, // Approximate from text "thứ 19 vào tháng 5 năm 2025"
+                pypl: 0.5, // Estimated
+                stackoverflowUsage: 8.0, // Estimated
+                stackoverflowDesired: 83.0, // "được ngưỡng mộ nhất"
+                hiringDemand: 3.0, // Estimated
+                github: 'Đang tăng trưởng' // Based on text
+            }
+        ];
+
+        // Lấy nhãn ngôn ngữ
+        const languages = popularityData.map(d => d.language);
+
+        // Hàm tạo biểu đồ thanh
+        function createBarChart(ctx, labels, data, label, backgroundColor, borderColor) {
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: label,
+                        data: data,
+                        backgroundColor: backgroundColor,
+                        borderColor: borderColor,
+                        borderWidth: 1,
+                        borderRadius: 8, // Rounded corners for bars
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false, // Allow charts to fill container
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'top',
+                            labels: {
+                                font: {
+                                    size: 14
+                                }
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return context.dataset.label + ': ' + context.parsed.y + '%';
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Tỷ lệ (%)',
+                                font: {
+                                    size: 14
+                                }
+                            },
+                            ticks: {
+                                callback: function(value) {
+                                    return value + '%';
+                                }
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Ngôn ngữ lập trình',
+                                font: {
+                                    size: 14
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Khởi tạo các biểu đồ
+        document.addEventListener('DOMContentLoaded', () => {
+            // Biểu đồ TIOBE & PYPL Index
+            const tiobePyplCtx = document.getElementById('tiobePyplChart').getContext('2d');
+            createBarChart(
+                tiobePyplCtx,
+                languages,
+                popularityData.map(d => d.tiobe),
+                'TIOBE Index Share (%)',
+                'rgba(75, 192, 192, 0.8)',
+                'rgba(75, 192, 192, 1)'
+            );
+            // Add PYPL data to the same chart for comparison
+            const tiobePyplChart = Chart.getChart(tiobePyplCtx); // Get the existing chart instance
+            tiobePyplChart.data.datasets.push({
+                label: 'PYPL Index Share (%)',
+                data: popularityData.map(d => d.pypl),
+                backgroundColor: 'rgba(153, 102, 255, 0.8)',
+                borderColor: 'rgba(153, 102, 255, 1)',
+                borderWidth: 1,
+                borderRadius: 8,
+            });
+            tiobePyplChart.update();
+
+
+            // Biểu đồ Stack Overflow Usage & Desired
+            const stackOverflowCtx = document.getElementById('stackOverflowChart').getContext('2d');
+            createBarChart(
+                stackOverflowCtx,
+                languages,
+                popularityData.map(d => d.stackoverflowUsage),
+                'Stack Overflow Usage (%)',
+                'rgba(255, 159, 64, 0.8)',
+                'rgba(255, 159, 64, 1)'
+            );
+            // Add Stack Overflow Desired data to the same chart
+            const stackOverflowChart = Chart.getChart(stackOverflowCtx);
+            stackOverflowChart.data.datasets.push({
+                label: 'Stack Overflow Desired (%)',
+                data: popularityData.map(d => d.stackoverflowDesired),
+                backgroundColor: 'rgba(54, 162, 235, 0.8)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1,
+                borderRadius: 8,
+            });
+            stackOverflowChart.update();
+
+
+            // Biểu đồ Nhu cầu tuyển dụng
+            const hiringDemandCtx = document.getElementById('hiringDemandChart').getContext('2d');
+            createBarChart(
+                hiringDemandCtx,
+                languages,
+                popularityData.map(d => d.hiringDemand),
+                'Nhu cầu tuyển dụng (%)',
+                'rgba(255, 99, 132, 0.8)',
+                'rgba(255, 99, 132, 1)'
+            );
+
+            // Biểu đồ GitHub Usage (Simplified for visualization as a bar chart)
+            const githubUsageCtx = document.getElementById('githubUsageChart').getContext('2d');
+            // For GitHub usage, we'll assign arbitrary values to represent rank/prominence
+            // Python: 100 (most used), JavaScript: 90 (2nd), C++: 70 (4th), Others lower
+            const githubData = popularityData.map(d => {
+                if (d.language === 'Python') return 100;
+                if (d.language === 'JavaScript') return 90;
+                if (d.language === 'C++') return 70;
+                // Assign arbitrary lower values for others to show relative position
+                if (d.language === 'Java') return 50;
+                if (d.language === 'C#') return 40;
+                if (d.language === 'Go') return 30;
+                if (d.language === 'Rust') return 20;
+                return 0;
+            });
+            createBarChart(
+                githubUsageCtx,
+                languages,
+                githubData,
+                'Mức độ sử dụng GitHub (Chỉ số tương đối)',
+                'rgba(75, 192, 192, 0.8)',
+                'rgba(75, 192, 192, 1)'
+            );
+            // Update the Y-axis label for GitHub chart
+            const githubChart = Chart.getChart(githubUsageCtx);
+            githubChart.options.scales.y.ticks.callback = function(value) { return value; }; // Remove '%'
+            githubChart.options.scales.y.title.text = 'Chỉ số tương đối';
+            githubChart.update();
+
+
+            // Điền dữ liệu vào bảng
+            const tableBody = document.getElementById('popularityTableBody');
+            popularityData.forEach(data => {
+                const row = tableBody.insertRow();
+                row.innerHTML = `
+                    <td class="font-semibold">${data.language}</td>
+                    <td>${data.tiobe}</td>
+                    <td>${data.pypl}</td>
+                    <td>${data.stackoverflowUsage}</td>
+                    <td>${data.stackoverflowDesired}</td>
+                    <td>${data.hiringDemand}</td>
+                    <td>${data.github}</td>
+                `;
+            });
+
+            // Logic cho Accordion
+            const accordionHeaders = document.querySelectorAll('.accordion-header');
+            accordionHeaders.forEach(header => {
+                header.addEventListener('click', () => {
+                    const content = header.nextElementSibling;
+                    const arrowIcon = header.querySelector('.arrow-icon');
+
+                    // Đóng tất cả các accordion khác
+                    document.querySelectorAll('.accordion-content.active').forEach(openContent => {
+                        if (openContent !== content) {
+                            openContent.classList.remove('active');
+                            openContent.previousElementSibling.querySelector('.arrow-icon').classList.remove('rotate');
+                        }
+                    });
+
+                    // Mở/đóng accordion hiện tại
+                    content.classList.toggle('active');
+                    arrowIcon.classList.toggle('rotate');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
