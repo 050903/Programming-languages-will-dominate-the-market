@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infographic: Tương Lai Thống Trị của Python</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8;
+            color: #1e293b;
+        }
+        .chart-container {
+            position: relative;
+            margin-left: auto;
+            margin-right: auto;
+            height: 320px;
+            max-width: 500px;
+            width: 100%;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .gradient-text {
+            background: linear-gradient(to right, #0062D6, #004AAD);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .kpi-card {
+            background-color: white;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            border-left: 4px solid #007BFF;
+        }
+        .kpi-value {
+            font-size: 3rem;
+            font-weight: 900;
+            color: #0062D6;
+        }
+        .kpi-label {
+            font-size: 1rem;
+            color: #475569;
+            margin-top: 0.5rem;
+        }
+        .flowchart-node {
+            background-color: #eef2ff;
+            border: 2px solid #818cf8;
+            color: #312e81;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            text-align: center;
+            font-weight: 600;
+        }
+        .flowchart-connector {
+            flex-grow: 1;
+            height: 2px;
+            background-color: #c7d2fe;
+        }
+        .loading-spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #3498db;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            animation: spin 1s linear infinite;
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 8px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="bg-slate-50">
+
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <div class="text-2xl font-bold text-slate-800">
+                <span class="gradient-text">Python</span>: Tương Lai Công Nghệ
+            </div>
+            <div class="hidden md:flex space-x-6">
+                <a href="#overview" class="text-slate-600 hover:text-blue-600">Tổng Quan</a>
+                <a href="#duos" class="text-slate-600 hover:text-blue-600">Các Bộ Đôi Sức Mạnh</a>
+                <a href="#comparison" class="text-slate-600 hover:text-blue-600">So Sánh</a>
+                <a href="#llm-features" class="text-slate-600 hover:text-blue-600">Tính Năng AI</a>
+                <a href="#future" class="text-slate-600 hover:text-blue-600">Tương Lai</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-6 py-12">
+
+        <section id="overview" class="text-center mb-24">
+            <h1 class="text-4xl md:text-6xl font-black text-slate-800 mb-4">Python: Ngôn Ngữ <span class="gradient-text">Định Hình Tương Lai</span></h1>
+            <p class="max-w-3xl mx-auto text-lg text-slate-600 mb-12">
+                Python không chỉ là một ngôn ngữ lập trình phổ biến, nó đã trở thành động lực cốt lõi cho các cuộc cách mạng công nghệ quan trọng nhất, từ Trí tuệ Nhân tạo đến Khoa học Dữ liệu. Hãy cùng khám phá các số liệu và xu hướng khẳng định vị thế thống trị của nó.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <div class="kpi-card">
+                    <div class="kpi-value">25.35%</div>
+                    <div class="kpi-label">Thị phần TIOBE (Tháng 5/2025) - Dẫn đầu tuyệt đối</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-value">#1</div>
+                    <div class="kpi-label">Ngôn ngữ được sử dụng nhiều nhất trên GitHub (2024)</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-value">66.4%</div>
+                    <div class="kpi-label">Ngôn ngữ "Được Mong Muốn Nhất" (Stack Overflow 2024)</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="why-python" class="mb-24">
+            <h2 class="text-3xl font-bold text-center text-slate-800 mb-4">Nền Tảng Vững Chắc: Tại Sao Python Dẫn Đầu?</h2>
+            <p class="text-center text-slate-600 mb-12 max-w-2xl mx-auto">Sự thành công của Python đến từ sự kết hợp của nhiều yếu tố cốt lõi, tạo nên một hệ sinh thái mạnh mẽ và dễ tiếp cận.</p>
+            <div class="max-w-4xl mx-auto bg-white p-8 rounded-xl shadow-lg">
+                <div class="flex items-center justify-center">
+                    <div class="flowchart-node">Dễ Học & Dễ Đọc</div>
+                    <div class="flowchart-connector"></div>
+                    <div class="flex flex-col items-center">
+                        <div class="w-2 h-16 bg-slate-200"></div>
+                         <div class="text-4xl">🐍</div>
+                        <h3 class="text-2xl font-bold gradient-text my-2">PYTHON</h3>
+                        <div class="w-2 h-16 bg-slate-200"></div>
+                    </div>
+                    <div class="flowchart-connector"></div>
+                    <div class="flowchart-node">Tính Linh Hoạt</div>
+                </div>
+                <div class="flex items-center justify-center -mt-8">
+                     <div class="flowchart-node">Hệ Sinh Thái Rộng Lớn</div>
+                     <div class="flowchart-connector"></div>
+                     <div class="flowchart-node">Cộng Đồng Năng Động</div>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="duos" class="mb-24">
+            <h2 class="text-3xl font-bold text-center text-slate-800 mb-4">Các 'Bộ Đôi' Sức Mạnh: Tương Lai Là Sự Cộng Hưởng</h2>
+            <p class="text-center text-slate-600 mb-12 max-w-3xl mx-auto">Sức mạnh thực sự của Python không nằm ở khả năng độc lập, mà ở sự cộng hưởng mạnh mẽ với các lĩnh vực công nghệ then chốt, tạo nên những "bộ đôi thống trị".</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+                
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-bold text-blue-800 mb-4">1. Python + AI & Học Máy</h3>
+                    <p class="text-slate-600 mb-4">Python là ngôn ngữ "mặc định" của AI, cung cấp các thư viện mạnh mẽ như TensorFlow và PyTorch. Nó là công cụ không thể thiếu để xây dựng các hệ thống thông minh thế hệ mới.</p>
+                    <div class="chart-container h-64 md:h-72"><canvas id="aiChart"></canvas></div>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-bold text-blue-800 mb-4">2. Python + Khoa học & Phân tích Dữ liệu</h3>
+                    <p class="text-slate-600 mb-4">Là "ngôn ngữ chung" của phân tích dữ liệu, Python với Pandas và NumPy giúp biến dữ liệu thô thành những hiểu biết sâu sắc, thúc đẩy các quyết định kinh doanh chiến lược.</p>
+                    <div class="chart-container h-64 md:h-72"><canvas id="dataScienceChart"></canvas></div>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow-lg md:col-span-2 lg:col-span-2">
+                    <h3 class="text-xl font-bold text-blue-800 mb-4">3. Python + Tự động hóa & DevOps do AI điều khiển</h3>
+                    <p class="text-slate-600 mb-6">Tích hợp AI vào DevOps, Python cách mạng hóa quy trình phát triển phần mềm, giúp tăng tốc độ triển khai, giảm thiểu lỗi và tối ưu hóa hoạt động.</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <div class="text-4xl font-extrabold text-blue-600">50%</div>
+                            <p class="font-semibold text-blue-800 mt-2">Giảm thời gian triển khai</p>
+                        </div>
+                        <div class="bg-green-50 p-4 rounded-lg">
+                            <div class="text-4xl font-extrabold text-green-600">30%</div>
+                            <p class="font-semibold text-green-800 mt-2">Giảm thiểu lỗi hệ thống</p>
+                        </div>
+                        <div class="bg-indigo-50 p-4 rounded-lg">
+                            <div class="text-4xl font-extrabold text-indigo-600">45%</div>
+                            <p class="font-semibold text-indigo-800 mt-2">Tăng tỷ lệ tự động hóa</p>
+                        </div>
+                    </div>
+                </div>
+
+                 <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-bold text-blue-800 mb-4">4. Python + An ninh mạng</h3>
+                    <p class="text-slate-600 mb-4">Nhờ tính linh hoạt và các thư viện phong phú, Python trở thành công cụ hàng đầu để tự động hóa kiểm thử xâm nhập, phân tích phần mềm độc hại và ứng phó sự cố an ninh.</p>
+                     <ul class="space-y-3">
+                        <li class="flex items-center"><span class="text-2xl mr-3">🛡️</span> <span class="font-semibold">Kiểm thử xâm nhập & Tấn công đạo đức</span></li>
+                        <li class="flex items-center"><span class="text-2xl mr-3">🔍</span> <span class="font-semibold">Phân tích nhật ký & Phát hiện bất thường</span></li>
+                        <li class="flex items-center"><span class="text-2xl mr-3">🔬</span> <span class="font-semibold">Phân tích mã độc & Điều tra số</span></li>
+                    </ul>
+                </div>
+
+                 <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-bold text-blue-800 mb-4">5. Python + Web & IoT</h3>
+                    <p class="text-slate-600 mb-4">Với framework Django/Flask, Python xây dựng phần phụ trợ mạnh mẽ cho web. Với MicroPython, nó điều khiển hàng tỷ thiết bị IoT, thu thập và xử lý dữ liệu tại biên.</p>
+                    <div class="flex items-center justify-around mt-8">
+                        <div class="text-center">
+                            <div class="text-5xl">🕸️</div>
+                            <p class="mt-2 font-bold">Web Backend</p>
+                        </div>
+                        <div class="text-5xl font-light text-slate-300">+</div>
+                         <div class="text-center">
+                            <div class="text-5xl">💡</div>
+                            <p class="mt-2 font-bold">IoT & Edge</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="comparison" class="mb-24">
+             <h2 class="text-3xl font-bold text-center text-slate-800 mb-4">Đối Mặt Với Thử Thách: Cách Python Tương Tác</h2>
+             <p class="text-center text-slate-600 mb-12 max-w-3xl mx-auto">Python không tồn tại một mình. Nó khắc phục các hạn chế về hiệu suất bằng cách hợp tác với các ngôn ngữ biên dịch hiệu suất cao, minh chứng cho một tương lai đa ngôn ngữ.</p>
+             <div class="bg-white p-6 rounded-lg shadow-lg">
+                <h3 class="text-xl font-bold text-blue-800 mb-2 text-center">So sánh Python, Go và Rust</h3>
+                <p class="text-slate-600 mb-4 text-center">Biểu đồ radar này cho thấy sự đánh đổi giữa các ngôn ngữ. Python dẫn đầu về Hệ sinh thái và Dễ học, trong khi Rust và Go vượt trội về Tốc độ và An toàn bộ nhớ.</p>
+                <div class="chart-container"><canvas id="languageComparisonChart"></canvas></div>
+             </div>
+        </section>
+
+        <section id="llm-features" class="mb-24">
+            <h2 class="text-3xl font-bold text-center text-slate-800 mb-4">Khám Phá Python Với AI ✨</h2>
+            <p class="text-center text-slate-600 mb-12 max-w-3xl mx-auto">Sử dụng sức mạnh của AI để tìm hiểu sâu hơn về Python và các ứng dụng của nó.</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                <!-- Python Concept Explainer -->
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-bold text-blue-800 mb-4">✨ Giải thích Khái niệm Python</h3>
+                    <p class="text-slate-600 mb-4">Nhập một khái niệm Python bạn muốn tìm hiểu:</p>
+                    <textarea id="pythonConceptInput" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 mb-4" rows="3" placeholder="Ví dụ: decorator, generator, GIL"></textarea>
+                    <button id="explainConceptBtn" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105 w-full">
+                        Giải thích ✨
+                    </button>
+                    <div id="conceptExplanationOutput" class="mt-4 p-4 bg-blue-50 border-l-4 border-blue-400 text-blue-800 rounded-md hidden">
+                        <p class="text-sm text-gray-500 mb-2">Lời giải thích từ AI:</p>
+                        <p id="conceptExplanationText"></p>
+                    </div>
+                </div>
+
+                <!-- Python Use Case Generator -->
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-bold text-blue-800 mb-4">✨ Gợi ý Ứng dụng Python theo Ngành</h3>
+                    <p class="text-slate-600 mb-4">Chọn một ngành để xem các ứng dụng của Python:</p>
+                    <select id="industrySelect" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 mb-4">
+                        <option value="">-- Chọn ngành --</option>
+                        <option value="Tài chính">Tài chính</option>
+                        <option value="Y tế">Y tế</option>
+                        <option value="Bán lẻ">Bán lẻ</option>
+                        <option value="Sản xuất">Sản xuất</option>
+                        <option value="Giáo dục">Giáo dục</option>
+                        <option value="Năng lượng">Năng lượng</option>
+                        <option value="Truyền thông">Truyền thông</option>
+                    </select>
+                    <button id="generateUseCasesBtn" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105 w-full">
+                        Tạo Ứng dụng ✨
+                    </button>
+                    <div id="useCasesOutput" class="mt-4 p-4 bg-blue-50 border-l-4 border-blue-400 text-blue-800 rounded-md hidden">
+                        <p class="text-sm text-gray-500 mb-2">Các ứng dụng trong ngành:</p>
+                        <ul id="useCasesList" class="list-disc list-inside"></ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="future" class="mb-12">
+            <h2 class="text-3xl font-bold text-center text-slate-800 mb-4">Lộ Trình Tương Lai</h2>
+            <p class="text-center text-slate-600 mb-12 max-w-3xl mx-auto">Sự thống trị của Python sẽ tiếp tục được củng cố thông qua việc tiên phong trong các công nghệ đột phá và duy trì vai trò điều phối trung tâm trong một thế giới đa ngôn ngữ.</p>
+            <div class="relative border-l-4 border-blue-300 ml-4 md:ml-0 md:mx-auto md:max-w-2xl">
+                <div class="mb-10 ml-8">
+                    <span class="absolute flex items-center justify-center w-8 h-8 bg-blue-200 rounded-full -left-4 ring-8 ring-white">🧠</span>
+                    <h3 class="flex items-center mb-1 text-lg font-semibold text-slate-900">AI Giải thích được (XAI) & Đạo đức</h3>
+                    <p class="text-slate-600">Dẫn đầu trong việc xây dựng các mô hình AI minh bạch và đáng tin cậy với các thư viện như SHAP và LIME.</p>
+                </div>
+                <div class="mb-10 ml-8">
+                    <span class="absolute flex items-center justify-center w-8 h-8 bg-blue-200 rounded-full -left-4 ring-8 ring-white">🤖</span>
+                    <h3 class="flex items-center mb-1 text-lg font-semibold text-slate-900">AI Biên (Edge AI) cho IoT</h3>
+                    <p class="text-slate-600">Đưa trí thông minh đến các thiết bị nhỏ với TensorFlow Lite, cho phép xử lý thời gian thực và giảm độ trễ.</p>
+                </div>
+                <div class="ml-8">
+                    <span class="absolute flex items-center justify-center w-8 h-8 bg-blue-200 rounded-full -left-4 ring-8 ring-white">⚛️</span>
+                    <h3 class="flex items-center mb-1 text-lg font-semibold text-slate-900">Điện toán Lượng tử</h3>
+                    <p class="text-slate-600">Đi trước một bước trong kỷ nguyên tính toán tiếp theo với các framework như Qiskit và PyQuil, mở ra tiềm năng giải quyết các vấn đề phức tạp nhất.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+    
+    <footer class="bg-slate-800 text-white mt-12">
+        <div class="container mx-auto px-6 py-8 text-center">
+            <p>Infographic này được tạo dựa trên báo cáo nghiên cứu sâu về xu hướng công nghệ của Python.</p>
+            <p class="text-sm text-slate-400 mt-2">&copy; 2025 - Phân tích thị trường công nghệ.</p>
+        </div>
+    </footer>
+    
+    <script>
+        const brilliantBluesPalette = {
+            primary: '#007BFF',   // Bright Blue
+            secondary: '#004AAD', // Darker Blue
+            tertiary: '#4DA3FF',  // Lighter Blue
+            accent: '#8CC8FF',    // Lightest Blue
+            neutral: '#6c757d',   // Gray for text/axes
+        };
+
+        function wrapLabel(label, maxLength) {
+            if (typeof label !== 'string' || label.length <= maxLength) {
+                return label;
+            }
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = '';
+            for (const word of words) {
+                if ((currentLine + word).length > maxLength) {
+                    lines.push(currentLine.trim());
+                    currentLine = '';
+                }
+                currentLine += word + ' ';
+            }
+            lines.push(currentLine.trim());
+            return lines.filter(line => line.length > 0);
+        }
+
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            }
+            return label;
+        };
+        
+        const commonTooltipOptions = {
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        title: tooltipTitleCallback
+                    }
+                }
+            }
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const aiCtx = document.getElementById('aiChart').getContext('2d');
+            new Chart(aiCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Chuyên gia Khoa học Dữ liệu dùng Python', 'Khác'],
+                    datasets: [{
+                        data: [90, 10],
+                        backgroundColor: [brilliantBluesPalette.primary, '#e9ecef'],
+                        borderColor: '#ffffff',
+                        borderWidth: 4,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                        },
+                        title: {
+                            display: true,
+                            text: '90% chuyên gia Khoa học Dữ liệu sử dụng Python',
+                            font: { size: 14 }
+                        },
+                        tooltip: commonTooltipOptions.plugins.tooltip
+                    },
+                    cutout: '70%',
+                }
+            });
+
+            const dataScienceCtx = document.getElementById('dataScienceChart').getContext('2d');
+            new Chart(dataScienceCtx, {
+                type: 'bar',
+                data: {
+                    labels: [
+                        wrapLabel('Ngôn ngữ được mong muốn nhất', 16),
+                        wrapLabel('Phổ biến nhất cho người mới học', 16),
+                        wrapLabel('Sử dụng nhiều nhất trên GitHub', 16)
+                    ],
+                    datasets: [{
+                        label: 'Vị thế của Python',
+                        data: [100, 95, 100],
+                        backgroundColor: [
+                            brilliantBluesPalette.primary, 
+                            brilliantBluesPalette.tertiary, 
+                            brilliantBluesPalette.secondary
+                        ],
+                        borderColor: '#ffffff',
+                        borderWidth: 2,
+                        borderRadius: 5
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    indexAxis: 'y',
+                    scales: {
+                       x: {
+                           display: false,
+                           max: 110,
+                       },
+                       y: {
+                           grid: {
+                               display: false
+                           }
+                       }
+                    },
+                    plugins: {
+                        legend: {
+                           display: false
+                        },
+                        title: {
+                            display: true,
+                            text: 'Vị thế dẫn đầu trong cộng đồng phát triển',
+                            font: { size: 14 }
+                        },
+                        tooltip: commonTooltipOptions.plugins.tooltip
+                    }
+                }
+            });
+
+            const comparisonCtx = document.getElementById('languageComparisonChart').getContext('2d');
+            new Chart(comparisonCtx, {
+                type: 'radar',
+                data: {
+                    labels: [
+                        wrapLabel('Tốc độ Thực thi', 16),
+                        wrapLabel('An toàn Bộ nhớ', 16),
+                        wrapLabel('Hệ sinh thái Thư viện', 16),
+                        wrapLabel('Độ khó Học', 16),
+                        wrapLabel('Khả năng Đồng thời', 16)
+                    ],
+                    datasets: [{
+                        label: 'Python',
+                        data: [3, 4, 10, 9, 5],
+                        backgroundColor: 'rgba(77, 163, 255, 0.2)',
+                        borderColor: brilliantBluesPalette.tertiary,
+                        pointBackgroundColor: brilliantBluesPalette.tertiary,
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: brilliantBluesPalette.tertiary,
+                    }, {
+                        label: 'Rust',
+                        data: [9, 10, 6, 3, 9],
+                        backgroundColor: 'rgba(0, 74, 173, 0.2)',
+                        borderColor: brilliantBluesPalette.secondary,
+                        pointBackgroundColor: brilliantBluesPalette.secondary,
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: brilliantBluesPalette.secondary
+                    }, {
+                        label: 'Go',
+                        data: [8, 7, 7, 7, 10],
+                        backgroundColor: 'rgba(140, 200, 255, 0.2)',
+                        borderColor: brilliantBluesPalette.accent,
+                        pointBackgroundColor: brilliantBluesPalette.accent,
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: brilliantBluesPalette.accent
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        tooltip: commonTooltipOptions.plugins.tooltip
+                    },
+                    scales: {
+                        r: {
+                            angleLines: { color: '#e2e8f0' },
+                            grid: { color: '#e2e8f0' },
+                            pointLabels: { font: { size: 12 } },
+                            min: 0,
+                            max: 10,
+                            ticks: {
+                                stepSize: 2,
+                                backdropColor: 'rgba(255, 255, 255, 0.75)'
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Gemini API Integration
+            const apiKey = ""; // If you want to use models other than gemini-2.0-flash or imagen-3.0-generate-002, provide an API key here. Otherwise, leave this as-is.
+
+            // Python Concept Explainer
+            const pythonConceptInput = document.getElementById('pythonConceptInput');
+            const explainConceptBtn = document.getElementById('explainConceptBtn');
+            const conceptExplanationOutput = document.getElementById('conceptExplanationOutput');
+            const conceptExplanationText = document.getElementById('conceptExplanationText');
+
+            explainConceptBtn.addEventListener('click', async () => {
+                const concept = pythonConceptInput.value.trim();
+                if (!concept) {
+                    conceptExplanationOutput.classList.remove('hidden');
+                    conceptExplanationOutput.innerHTML = '<p class="text-red-600">Vui lòng nhập một khái niệm Python.</p>';
+                    return;
+                }
+
+                conceptExplanationOutput.classList.remove('hidden');
+                conceptExplanationText.innerHTML = '<span class="loading-spinner"></span> Đang tải...';
+                conceptExplanationOutput.classList.add('bg-blue-50', 'border-blue-400', 'text-blue-800');
+                conceptExplanationOutput.classList.remove('bg-red-50', 'border-red-400', 'text-red-800');
+
+                try {
+                    let chatHistory = [];
+                    chatHistory.push({ role: "user", parts: [{ text: `Giải thích khái niệm Python này một cách ngắn gọn và dễ hiểu: ${concept}` }] });
+                    const payload = { contents: chatHistory };
+                    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    const result = await response.json();
+
+                    if (result.candidates && result.candidates.length > 0 &&
+                        result.candidates[0].content && result.candidates[0].content.parts &&
+                        result.candidates[0].content.parts.length > 0) {
+                        const text = result.candidates[0].content.parts[0].text;
+                        conceptExplanationText.innerHTML = text;
+                    } else {
+                        conceptExplanationText.innerHTML = 'Không thể tạo lời giải thích. Vui lòng thử lại.';
+                        conceptExplanationOutput.classList.add('bg-red-50', 'border-red-400', 'text-red-800');
+                        conceptExplanationOutput.classList.remove('bg-blue-50', 'border-blue-400', 'text-blue-800');
+                    }
+                } catch (error) {
+                    console.error('Lỗi khi gọi API Gemini:', error);
+                    conceptExplanationText.innerHTML = 'Đã xảy ra lỗi khi kết nối với AI. Vui lòng thử lại sau.';
+                    conceptExplanationOutput.classList.add('bg-red-50', 'border-red-400', 'text-red-800');
+                    conceptExplanationOutput.classList.remove('bg-blue-50', 'border-blue-400', 'text-blue-800');
+                }
+            });
+
+            // Python Use Case Generator
+            const industrySelect = document.getElementById('industrySelect');
+            const generateUseCasesBtn = document.getElementById('generateUseCasesBtn');
+            const useCasesOutput = document.getElementById('useCasesOutput');
+            const useCasesList = document.getElementById('useCasesList');
+
+            generateUseCasesBtn.addEventListener('click', async () => {
+                const industry = industrySelect.value;
+                if (!industry) {
+                    useCasesOutput.classList.remove('hidden');
+                    useCasesOutput.innerHTML = '<p class="text-red-600">Vui lòng chọn một ngành.</p>';
+                    return;
+                }
+
+                useCasesOutput.classList.remove('hidden');
+                useCasesList.innerHTML = '<span class="loading-spinner"></span> Đang tải...';
+                useCasesOutput.classList.add('bg-blue-50', 'border-blue-400', 'text-blue-800');
+                useCasesOutput.classList.remove('bg-red-50', 'border-red-400', 'text-red-800');
+
+                try {
+                    let chatHistory = [];
+                    chatHistory.push({ role: "user", parts: [{ text: `Liệt kê 3-5 ứng dụng chính của Python trong ngành ${industry}. Trả lời dưới dạng danh sách, mỗi ứng dụng là một gạch đầu dòng.` }] });
+                    const payload = { contents: chatHistory };
+                    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    const result = await response.json();
+
+                    if (result.candidates && result.candidates.length > 0 &&
+                        result.candidates[0].content && result.candidates[0].content.parts &&
+                        result.candidates[0].content.parts.length > 0) {
+                        const text = result.candidates[0].content.parts[0].text;
+                        const items = text.split('\n').filter(line => line.trim().startsWith('*') || line.trim().startsWith('-')).map(line => `<li>${line.trim().substring(1).trim()}</li>`).join('');
+                        useCasesList.innerHTML = items || 'Không tìm thấy ứng dụng nào cho ngành này.';
+                    } else {
+                        useCasesList.innerHTML = 'Không thể tạo ứng dụng. Vui lòng thử lại.';
+                        useCasesOutput.classList.add('bg-red-50', 'border-red-400', 'text-red-800');
+                        useCasesOutput.classList.remove('bg-blue-50', 'border-blue-400', 'text-blue-800');
+                    }
+                } catch (error) {
+                    console.error('Lỗi khi gọi API Gemini:', error);
+                    useCasesList.innerHTML = 'Đã xảy ra lỗi khi kết nối với AI. Vui lòng thử lại sau.';
+                    useCasesOutput.classList.add('bg-red-50', 'border-red-400', 'text-red-800');
+                    useCasesOutput.classList.remove('bg-blue-50', 'border-blue-400', 'text-blue-800');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
